@@ -345,3 +345,155 @@ write_csv(accident_10yr, "data/processed/accident_2015_2024_core.csv")
 write_csv(person_10yr, "data/processed/person_2015_2024_core.csv")
 write_csv(vehicle_10yr, "data/processed/vehicle_2015_2024_core.csv")
 write_csv(driver_analysis_lp, "data/processed/driver_analysis_lp_2015_2024.csv")
+
+
+#####################################
+### check person$DRINKING vs. vehicle$DR_DRINK
+#####################################
+
+# Keep driver rows from person file
+drivers_person_check <- person_10yr %>%
+  filter(PER_TYP == 1) %>%
+  select(
+    YEAR_FILE,
+    ST_CASE,
+    VEH_NO,
+    PER_NO,
+    PER_TYP,
+    PER_TYPNAME,
+    DRINKING,
+    DRINKINGNAME,
+    ALC_STATUS, ALC_STATUSNAME,
+    ATST_TYP, ATST_TYPNAME,
+    ALC_RES, ALC_RESNAME
+  )
+
+# Keep vehicle-level driver drinking variable if it exists
+vehicle_drink_check <- vehicle_10yr %>%
+  select(
+    YEAR_FILE,
+    ST_CASE,
+    VEH_NO,
+    any_of(c("DR_DRINK", "DR_DRINKNAME"))
+  )
+
+# Join person driver rows to vehicle rows
+drink_compare <- drivers_person_check %>%
+  left_join(
+    vehicle_drink_check,
+    by = c("YEAR_FILE", "ST_CASE", "VEH_NO")
+  )
+
+glimpse(drink_compare)
+
+# See all combinations
+drink_compare %>%
+  count(DRINKING, DRINKINGNAME, DR_DRINK, DR_DRINKNAME, sort = TRUE) %>%
+  print(n = 50)
+
+### comparisons
+drink_compare <- drink_compare %>%
+  mutate(
+    drink_match = case_when(
+      is.na(DRINKING) & is.na(DR_DRINK) ~ TRUE,
+      DRINKING == DR_DRINK ~ TRUE,
+      TRUE ~ FALSE
+    )
+  )
+
+drink_compare %>%
+  count(drink_match)
+
+# check by year
+drink_compare %>%
+  group_by(YEAR_FILE) %>%
+  summarize(
+    n_driver_rows = n(),
+    n_missing_person_drinking = sum(is.na(DRINKING)),
+    n_missing_vehicle_dr_drink = sum(is.na(DR_DRINK)),
+    n_matches = sum(drink_match, na.rm = TRUE),
+    n_mismatches = sum(!drink_match, na.rm = TRUE),
+    match_rate = mean(drink_match, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+names(drink_compare)
+
+drink_compare %>%
+  filter(!drink_match) %>%
+  select(
+    YEAR_FILE, ST_CASE, VEH_NO, PER_NO,
+    DRINKING, DRINKINGNAME,
+    DR_DRINK, DR_DRINKNAME,
+    ALC_STATUS, ALC_STATUSNAME,
+    ATST_TYP, ATST_TYPNAME,
+    ALC_RES, ALC_RESNAME
+  ) %>%
+  print(n = 100)
+
+drink_compare %>%
+  filter(!drink_match) %>%
+  mutate(
+    bac_valid = !is.na(ALC_RES) & ALC_RES >= 0 & ALC_RES < 995,
+    bac_positive = bac_valid & ALC_RES > 0,
+    bac_ge_08 = bac_valid & ALC_RES >= 80,
+    bac_ge_10 = bac_valid & ALC_RES >= 100
+  ) %>%
+  count(
+    DRINKING, DRINKINGNAME,
+    DR_DRINK, DR_DRINKNAME,
+    bac_valid, bac_positive, bac_ge_08,
+    sort = TRUE
+  ) %>%
+  print(n = 100)
+
+
+# check if join went ok
+drivers_person_check %>%
+  count(YEAR_FILE, ST_CASE, VEH_NO) %>%
+  filter(n > 1)
+
+vehicle_drink_check %>%
+  count(YEAR_FILE, ST_CASE, VEH_NO) %>%
+  filter(n > 1)
+
+### save mismatch files for later reference if needed
+drink_mismatch_summary <- drink_compare %>%
+  filter(!drink_match) %>%
+  mutate(
+    bac_valid = !is.na(ALC_RES) & ALC_RES >= 0 & ALC_RES < 995,
+    bac_positive = bac_valid & ALC_RES > 0,
+    bac_ge_08 = bac_valid & ALC_RES >= 80,
+    bac_ge_10 = bac_valid & ALC_RES >= 100
+  ) %>%
+  count(
+    DRINKING, DRINKINGNAME,
+    DR_DRINK, DR_DRINKNAME,
+    bac_valid, bac_positive, bac_ge_08, bac_ge_10,
+    sort = TRUE
+  )
+
+write_csv(
+  drink_mismatch_summary,
+  "data/processed/drinking_vs_dr_drink_mismatch_summary_2015_2024.csv"
+)
+
+drink_match_by_year <- drink_compare %>%
+  mutate(
+    drink_match = DRINKING == DR_DRINK
+  ) %>%
+  group_by(YEAR_FILE) %>%
+  summarize(
+    n_driver_rows = n(),
+    n_matches = sum(drink_match, na.rm = TRUE),
+    n_mismatches = sum(!drink_match, na.rm = TRUE),
+    match_rate = mean(drink_match, na.rm = TRUE),
+    person_drinking_yes_rate = mean(DRINKING == 1, na.rm = TRUE),
+    dr_drink_yes_rate = mean(DR_DRINK == 1, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+write_csv(
+  drink_match_by_year,
+  "data/processed/drinking_vs_dr_drink_match_by_year_2015_2024.csv"
+)
