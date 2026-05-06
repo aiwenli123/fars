@@ -1,3 +1,5 @@
+# 01_clean_data.R
+
 rm(list = ls())
 
 library(tidyverse)
@@ -66,16 +68,16 @@ vehicle_vars <- c(
   "MODEL",
   "BODY_TYP", "BODY_TYPNAME",
   "MOD_YEAR", "MOD_YEARNAME",
-  "VPICMAKE", "VPICMAKENAME",
-  "VPICMODEL", "VPICMODELNAME",
-  "VPICBODYCLASS", "VPICBODYCLASSNAME",
-  "GVWR_FROM", "GVWR_FROMNAME",
-  "GVWR_TO", "GVWR_TONAME",
+  # "VPICMAKE", "VPICMAKENAME",
+  # "VPICMODEL", "VPICMODELNAME",
+  # "VPICBODYCLASS", "VPICBODYCLASSNAME",
+  # "GVWR_FROM", "GVWR_FROMNAME",
+  # "GVWR_TO", "GVWR_TONAME",
   "TRAV_SP", "TRAV_SPNAME",
   "ROLLOVER", "ROLLOVERNAME",
   "M_HARM", "M_HARMNAME",
   "DR_PRES", "DR_PRESNAME",
-  "DR_DRINK", "DR_DRINKNAME"  # may or may not exist depending on year/file
+  "DR_DRINK", "DR_DRINKNAME"  # some may or may not exist depending on year/file
 )
 
 make_fars_path <- function(year, file_type) {
