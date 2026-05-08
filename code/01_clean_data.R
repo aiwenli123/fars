@@ -499,3 +499,13 @@ write_csv(
   drink_match_by_year,
   "data/processed/drinking_vs_dr_drink_match_by_year_2015_2024.csv"
 )
+
+
+# library(tidyverse)
+# 
+# driver_analysis_lp <- read_csv("data/processed/driver_analysis_lp_2015_2024.csv")
+# names(driver_analysis_lp)
+# 
+# dim(driver_analysis_lp)
+# table(driver_analysis_lp$ALC_RES)
+# table(driver_analysis_lp$ALC_RESNAME)
