@@ -2,8 +2,6 @@
 
 This repository contains code for preparing recent Fatality Analysis Reporting System (FARS) data for a Levitt–Porter-style drunk driving replication using 2015–2024 FARS National CSV files.
 
-The current goal is to build a cleaned driver-level analysis dataset for one- and two-vehicle fatal crashes, define several candidate alcohol-involvement measures, and prepare for replication analyses comparing fatal crash involvement among drunk and sober drivers.
-
 ## Raw data
 
 Raw FARS data are not included in this repository due to file size. To reproduce the analysis, download the FARS National CSV files from:
@@ -18,26 +16,15 @@ data/raw/
 
 ## Code scripts
 
-This repository currently contains two main R scripts:
+### `00_read_data.R`
 
-```text
-00_read_data.R
-01_clean_data.R
-```
-
-The first script is for initial data inspection and variable documentation. The second script builds the cleaned 2015–2024 analysis datasets.
-
----
-
-## `00_read_data.R`
-
-### Purpose
+**Notes**
 
 `00_read_data.R` is an initial exploration script. It reads in one year of raw FARS data, checks the structure of the accident, person, and vehicle files, and creates a manually curated variable reference table for the replication project.
 
 This script is mainly useful for understanding the raw FARS files and documenting which variables are needed later.
 
-### Inputs
+**Inputs**
 
 This script currently reads the 2024 FARS National CSV files:
 
@@ -47,7 +34,7 @@ data/raw/FARS2024NationalCSV/vehicle.csv
 data/raw/FARS2024NationalCSV/accident.csv
 ```
 
-### Output
+**Output**
 
 The script saves the variable reference table to:
 
@@ -55,15 +42,13 @@ The script saves the variable reference table to:
 data/processed/fars_variable_reference_for_replication.csv
 ```
 
----
+### `01_clean_data.R`
 
-## `01_clean_data.R`
-
-### Purpose
+**Notes**
 
 `01_clean_data.R` is the main data cleaning script. It reads and combines the 2015–2024 FARS accident, person, and vehicle files, creates driver-level alcohol variables, builds a cleaned Levitt-Porter-style analysis sample, and checks whether two FARS alcohol variables match.
 
-### Inputs
+**Inputs**
 
 For each year from 2015 through 2024, the script expects the following files:
 
@@ -100,7 +85,7 @@ data/raw/
     vehicle.csv
 ```
 
-### Alcohol variables created
+**Alcohol variables created**
 
 The script creates several alcohol-involvement variables:
 
@@ -140,7 +125,7 @@ bac_ge_10
 
 Equals 1 if observed BAC is at least 0.10 and equals 0 if observed BAC is valid but below 0.10.
 
-### Levitt-Porter-style sample
+**Levitt-Porter-style sample**
 
 The current cleaned analysis sample keeps:
 
@@ -151,7 +136,7 @@ The current cleaned analysis sample keeps:
 
 The main cleaned analysis file has one row per driver. For two-vehicle crashes, there should be two driver rows per crash.
 
-### Outputs
+**Outputs**
 
 The script saves the following processed datasets:
 
