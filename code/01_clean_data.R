@@ -101,7 +101,7 @@ read_fars_file <- function(year, file_type, keep_vars) {
     show_col_types = FALSE,
     guess_max = 100000
   ) %>%
-    rename_with(toupper)
+    rename_with(toupper)# make all col names uppercase bc fars is inconsistent wrt that
   
   # Some person/vehicle files may not have YEAR, so add from folder name
   if (!"YEAR" %in% names(df)) {
