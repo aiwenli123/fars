@@ -1,0 +1,41 @@
+period,vehicle_sample,alcohol_definition_label,total_crashes,classifiable_crashes,missing_or_ambiguous_crashes,missing_or_ambiguous_share
+2015-2024 all years,One-vehicle crashes,"Police drinking, complete case",94356,61463,32893,0.34860528212302344
+2015-2024 all years,One-vehicle crashes,"Police drinking, unknown as no",94356,94356,0,0
+2015-2024 all years,One-vehicle crashes,"Vehicle DR_DRINK, complete case",94356,94356,0,0
+2015-2024 all years,One-vehicle crashes,Observed BAC >= 0.08,94356,48140,46216,0.4898045699266607
+2015-2024 all years,One-vehicle crashes,Observed BAC >= 0.10,94356,48140,46216,0.4898045699266607
+2015-2024 all years,Two-vehicle crashes,"Police drinking, complete case",36153,18969,17184,0.47531325201228114
+2015-2024 all years,Two-vehicle crashes,"Police drinking, unknown as no",36153,36153,0,0
+2015-2024 all years,Two-vehicle crashes,"Vehicle DR_DRINK, complete case",36153,36153,0,0
+2015-2024 all years,Two-vehicle crashes,Observed BAC >= 0.08,36153,7764,28389,0.7852460376732221
+2015-2024 all years,Two-vehicle crashes,Observed BAC >= 0.10,36153,7764,28389,0.7852460376732221
+2015-2019 pre-COVID,One-vehicle crashes,"Police drinking, complete case",43912,30075,13837,0.3151074877026781
+2015-2019 pre-COVID,One-vehicle crashes,"Police drinking, unknown as no",43912,43912,0,0
+2015-2019 pre-COVID,One-vehicle crashes,"Vehicle DR_DRINK, complete case",43912,43912,0,0
+2015-2019 pre-COVID,One-vehicle crashes,Observed BAC >= 0.08,43912,24580,19332,0.4402441246128621
+2015-2019 pre-COVID,One-vehicle crashes,Observed BAC >= 0.10,43912,24580,19332,0.4402441246128621
+2015-2019 pre-COVID,Two-vehicle crashes,"Police drinking, complete case",16050,9155,6895,0.429595015576324
+2015-2019 pre-COVID,Two-vehicle crashes,"Police drinking, unknown as no",16050,16050,0,0
+2015-2019 pre-COVID,Two-vehicle crashes,"Vehicle DR_DRINK, complete case",16050,16050,0,0
+2015-2019 pre-COVID,Two-vehicle crashes,Observed BAC >= 0.08,16050,3994,12056,0.7511526479750779
+2015-2019 pre-COVID,Two-vehicle crashes,Observed BAC >= 0.10,16050,3994,12056,0.7511526479750779
+2020-2021 COVID,One-vehicle crashes,"Police drinking, complete case",20380,13354,7026,0.34474975466143276
+2020-2021 COVID,One-vehicle crashes,"Police drinking, unknown as no",20380,20380,0,0
+2020-2021 COVID,One-vehicle crashes,"Vehicle DR_DRINK, complete case",20380,20380,0,0
+2020-2021 COVID,One-vehicle crashes,Observed BAC >= 0.08,20380,9957,10423,0.511432777232581
+2020-2021 COVID,One-vehicle crashes,Observed BAC >= 0.10,20380,9957,10423,0.511432777232581
+2020-2021 COVID,Two-vehicle crashes,"Police drinking, complete case",7835,4084,3751,0.47874920229738355
+2020-2021 COVID,Two-vehicle crashes,"Police drinking, unknown as no",7835,7835,0,0
+2020-2021 COVID,Two-vehicle crashes,"Vehicle DR_DRINK, complete case",7835,7835,0,0
+2020-2021 COVID,Two-vehicle crashes,Observed BAC >= 0.08,7835,1561,6274,0.800765794511806
+2020-2021 COVID,Two-vehicle crashes,Observed BAC >= 0.10,7835,1561,6274,0.800765794511806
+2022-2024 post-COVID,One-vehicle crashes,"Police drinking, complete case",30064,18034,12030,0.4001463544438531
+2022-2024 post-COVID,One-vehicle crashes,"Police drinking, unknown as no",30064,30064,0,0
+2022-2024 post-COVID,One-vehicle crashes,"Vehicle DR_DRINK, complete case",30064,30064,0,0
+2022-2024 post-COVID,One-vehicle crashes,Observed BAC >= 0.08,30064,13603,16461,0.5475319318786589
+2022-2024 post-COVID,One-vehicle crashes,Observed BAC >= 0.10,30064,13603,16461,0.5475319318786589
+2022-2024 post-COVID,Two-vehicle crashes,"Police drinking, complete case",12268,5730,6538,0.5329312031300946
+2022-2024 post-COVID,Two-vehicle crashes,"Police drinking, unknown as no",12268,12268,0,0
+2022-2024 post-COVID,Two-vehicle crashes,"Vehicle DR_DRINK, complete case",12268,12268,0,0
+2022-2024 post-COVID,Two-vehicle crashes,Observed BAC >= 0.08,12268,2209,10059,0.8199380502119334
+2022-2024 post-COVID,Two-vehicle crashes,Observed BAC >= 0.10,12268,2209,10059,0.8199380502119334
