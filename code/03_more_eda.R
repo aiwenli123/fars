@@ -68,26 +68,6 @@ check_file_exists <- function(path) {
   }
 }
 
-# fmt_count <- function(x) {
-#   comma(x, accuracy = 1)
-# }
-# 
-# fmt_pct <- function(x, accuracy = 0.1) {
-#   percent(x, accuracy = accuracy)
-# }
-# 
-# fmt_num <- function(x, accuracy = 0.01) {
-#   number(x, accuracy = accuracy)
-# }
-# 
-# fmt_theta <- function(x) {
-#   ifelse(is.na(x), NA_character_, number(x, accuracy = 0.01))
-# }
-# 
-# fmt_R <- function(x) {
-#   ifelse(is.na(x), NA_character_, number(x, accuracy = 0.01))
-# }
-
 period_levels <- c(
   "2015-2024 all years",
   "2015-2019 pre-COVID",

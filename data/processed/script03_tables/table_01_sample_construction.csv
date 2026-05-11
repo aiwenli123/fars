@@ -1,9 +1,9 @@
 Step,Count
-Driver rows in cleaned driver-level LP file,166662
-Distinct crashes in cleaned driver-level LP file,130509
-Driver rows in one- or two-vehicle crashes,166662
-Distinct one- or two-vehicle crashes,130509
-Clean crashes with driver row count equal to VE_FORMS,130509
-Driver rows in clean one- or two-vehicle crashes,166662
-Clean one-vehicle crashes,94356
-Clean two-vehicle crashes,36153
+Driver rows in cleaned driver-level LP file,163881
+Distinct crashes in cleaned driver-level LP file,127909
+Driver rows in one- or two-vehicle crashes,163881
+Distinct one- or two-vehicle crashes,127909
+Clean crashes with driver row count equal to VE_FORMS,127909
+Driver rows in clean one- or two-vehicle crashes,163881
+Clean one-vehicle crashes,91937
+Clean two-vehicle crashes,35972

@@ -26,7 +26,6 @@
 #
 # Inputs:
 #   data/processed/driver_analysis_lp_2015_2024.csv
-#   data/processed/vehicle_2015_2024_core.csv   # used to get DR_DRINK column
 #
 # Main outputs:
 #   data/processed/lp_crash_types_2015_2024.csv
@@ -48,7 +47,6 @@ library(tidyverse)
 # -------------------------------------------------------------------------
 
 driver_path  <- "data/processed/driver_analysis_lp_2015_2024.csv"
-vehicle_path <- "data/processed/vehicle_2015_2024_core.csv"
 
 out_dir <- "data/processed"
 fig_dir <- "figures"
@@ -60,117 +58,15 @@ dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
 # 1. Load cleaned driver-level LP sample
 # -------------------------------------------------------------------------
 
-driver_lp <- read_csv(driver_path) %>%
+driver_lp_clean <- read_csv(driver_path) %>%
   rename_with(toupper) # convert col names to uppercase
+names(driver_lp_clean)
 
-cat("\nLoaded driver-level LP sample:\n")
-cat("Rows:", nrow(driver_lp), "\n")
-cat("Columns:", ncol(driver_lp), "\n\n")
-
-cat("Variables in driver_lp:\n")
-print(names(driver_lp))
-
-# -------------------------------------------------------------------------
-# 2. Add DR_DRINK from vehicle file if not already present
-# -------------------------------------------------------------------------
-
-if (!"DR_DRINK" %in% names(driver_lp)) {
-  
-  cat("\nDR_DRINK not found in driver-level file. Joining from vehicle file...\n")
-  
-  vehicle_core <- read_csv(vehicle_path, show_col_types = FALSE) %>%
-    rename_with(toupper)
-  
-  vehicle_drink <- vehicle_core %>%
-    select(
-      YEAR_FILE,
-      ST_CASE,
-      VEH_NO,
-      any_of(c("DR_DRINK", "DR_DRINKNAME"))
-    )
-  
-  driver_lp <- driver_lp %>%
-    left_join(
-      vehicle_drink,
-      by = c("YEAR_FILE", "ST_CASE", "VEH_NO")
-    )
-  
-} else {
-  cat("\nDR_DRINK already found in driver-level file.\n")
-}
-
-# -------------------------------------------------------------------------
-# 3. Basic sanity checks
-# -------------------------------------------------------------------------
-
-required_vars <- c(
-  "YEAR_FILE", "YEAR", "ST_CASE", "VEH_NO", "VE_FORMS",
-  "DRINKING", "ALC_RES"
-)
-
-missing_required <- setdiff(required_vars, names(driver_lp))
-
-if (length(missing_required) > 0) {
-  stop(
-    "The following required variables are missing from driver_lp: ",
-    paste(missing_required, collapse = ", ")
-  )
-}
-
-cat("\nCounts by year and VE_FORMS:\n")
-print(
-  driver_lp %>%
-    count(YEAR, VE_FORMS) %>%
-    arrange(YEAR, VE_FORMS),
-  n = Inf
-)
-
-# Check number of driver rows per crash
-driver_rows_by_crash <- driver_lp %>%
-  group_by(YEAR_FILE, ST_CASE) %>%
-  summarize(
-    YEAR = first(YEAR),
-    VE_FORMS = first(VE_FORMS),
-    n_driver_rows = n(),
-    .groups = "drop"
-  )
-
-cat("\nDriver rows by crash vs VE_FORMS:\n")
-print(
-  driver_rows_by_crash %>%
-    count(VE_FORMS, n_driver_rows, sort = TRUE),
-  n = Inf
-)
-
-bad_driver_row_counts <- driver_rows_by_crash %>%
-  filter(VE_FORMS %in% c(1, 2), n_driver_rows != VE_FORMS)
-
-if (nrow(bad_driver_row_counts) > 0) {
-  warning(
-    "Some crashes have n_driver_rows != VE_FORMS. ",
-    "These should have been filtered in script 01, but will be excluded here."
-  )
-}
-
-# Keep only clean one- and two-vehicle crashes with expected driver row counts
-clean_crashes <- driver_rows_by_crash %>%
-  filter(
-    VE_FORMS %in% c(1, 2),
-    n_driver_rows == VE_FORMS
-  )
-
-driver_lp_clean <- driver_lp %>%
-  semi_join(
-    clean_crashes %>% select(YEAR_FILE, ST_CASE),
-    by = c("YEAR_FILE", "ST_CASE")
-  )
-
-cat("\nClean driver-level sample after sanity filtering:\n")
 cat("Rows:", nrow(driver_lp_clean), "\n")
 cat("Crashes:", n_distinct(paste(driver_lp_clean$YEAR_FILE, driver_lp_clean$ST_CASE)), "\n\n")
 
 # -------------------------------------------------------------------------
-# 4. Create / refresh alcohol variables
+# 2. Create / refresh alcohol variables
 # -------------------------------------------------------------------------
 
 # Notes:
@@ -238,7 +134,7 @@ driver_lp_clean <- driver_lp_clean %>%
   )
 
 # -------------------------------------------------------------------------
-# 5. Put alcohol definitions into long format
+# 3. Put alcohol definitions into long format
 # -------------------------------------------------------------------------
 
 alcohol_definition_vars <- c(
@@ -289,7 +185,7 @@ print(
 )
 
 # -------------------------------------------------------------------------
-# 6. Collapse driver rows to crash-level types
+# 4. Collapse driver rows to crash-level types
 # -------------------------------------------------------------------------
 
 crash_types <- driver_long %>%
@@ -342,7 +238,7 @@ write_csv(
 )
 
 # -------------------------------------------------------------------------
-# 7. Create pooled and COVID-period grouping variable
+# 5. Create pooled and COVID-period grouping variable
 # -------------------------------------------------------------------------
 
 crash_types_for_summary <- crash_types %>%
@@ -371,7 +267,7 @@ crash_types_for_summary <- crash_types %>%
   )
 
 # -------------------------------------------------------------------------
-# 8. Crash type count tables
+# 6. Crash type count tables
 # -------------------------------------------------------------------------
 
 crash_type_counts <- crash_types_for_summary %>%
@@ -442,7 +338,7 @@ print(
 )
 
 # -------------------------------------------------------------------------
-# 9. Simple Levitt-Porter theta estimates from two-vehicle crash counts
+# 7. Simple Levitt-Porter theta estimates from two-vehicle crash counts
 # -------------------------------------------------------------------------
 
 compute_theta <- function(A_DD, A_DS, A_SS) {
@@ -539,7 +435,7 @@ cat("\nSimple Levitt-Porter theta estimates:\n")
 print(theta_simple, n = Inf)
 
 # -------------------------------------------------------------------------
-# 10. One-vehicle count table
+# 8. One-vehicle count table
 # -------------------------------------------------------------------------
 
 one_vehicle_counts <- crash_types_for_summary %>%
@@ -593,7 +489,7 @@ cat("\nOne-vehicle crash counts:\n")
 print(one_vehicle_counts, n = Inf)
 
 # -------------------------------------------------------------------------
-# 11. Helpful wide-format summary tables for quick inspection
+# 9. Helpful wide-format summary tables for quick inspection
 # -------------------------------------------------------------------------
 
 theta_all_years_wide <- theta_simple %>%
@@ -645,7 +541,7 @@ write_csv(
 )
 
 # -------------------------------------------------------------------------
-# 12. Plots
+# 10. Plots
 # -------------------------------------------------------------------------
 
 # Plot 1: DD / DS / SS shares by alcohol definition, all years pooled
