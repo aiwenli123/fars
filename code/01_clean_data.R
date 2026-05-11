@@ -505,7 +505,7 @@ driver_analysis <- drivers_person %>%
         RUR_URB, RUR_URBNAME,
         FUNC_SYS, FUNC_SYSNAME,
         LGT_COND, LGT_CONDNAME,
-        WEATHER, WEATHERNAME,
+        WEATHER, WEATHERNAME
       ),
     by = c("YEAR_FILE", "ST_CASE")
   ) %>%
