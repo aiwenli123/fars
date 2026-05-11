@@ -113,6 +113,9 @@ vehicle_vars <- c(
   "PREV_SPD", "PREV_SPDNAME",
   "PREV_OTH", "PREV_OTHNAME",
   "PREV_DWI", "PREV_DWINAME",
+  "PREV_SUS1", "PREV_SUS1NAME", # missing in some years
+  "PREV_SUS2", "PREV_SUS2NAME", # missing in some years
+  "PREV_SUS3", "PREV_SUS3NAME", # missing in some years
   "FIRST_MO", "FIRST_MONAME",
   "FIRST_YR", "FIRST_YRNAME",
   "LAST_MO", "LAST_MONAME",
@@ -262,7 +265,8 @@ vehicle_10yr %>%
 
 # Prior-record variables: important for LP bad-record construction
 prior_record_vars <- c(
-  "PREV_ACC", "PREV_SPD", "PREV_OTH", "PREV_DWI"
+  "PREV_ACC", "PREV_SPD", "PREV_OTH", 
+  "PREV_DWI", "PREV_SUS1", "PREV_SUS2", "PREV_SUS3"
 )
 
 for (v in prior_record_vars) {
@@ -411,6 +415,9 @@ vehicle_driver_vars <- vehicle_10yr %>%
     PREV_SPD, PREV_SPDNAME,
     PREV_OTH, PREV_OTHNAME,
     PREV_DWI, PREV_DWINAME,
+    PREV_SUS1, PREV_SUS1NAME,
+    PREV_SUS2, PREV_SUS2NAME,
+    PREV_SUS3, PREV_SUS3NAME,
     FIRST_MO, FIRST_MONAME,
     FIRST_YR, FIRST_YRNAME,
     LAST_MO, LAST_MONAME,
@@ -423,6 +430,9 @@ vehicle_driver_vars <- vehicle_10yr %>%
     prev_spd_n  = clean_prior_count(PREV_SPD),
     prev_oth_n  = clean_prior_count(PREV_OTH),
     prev_dwi_n  = clean_prior_count(PREV_DWI),
+    prev_sus1_n = clean_prior_count(PREV_SUS1),
+    prev_sus2_n = clean_prior_count(PREV_SUS2),
+    prev_sus3_n = clean_prior_count(PREV_SUS3),
     
     # LP-style minor blemishes:
     # previous crashes + previous speeding convictions + previous other moving violations
@@ -440,7 +450,7 @@ vehicle_driver_vars <- vehicle_10yr %>%
     # LP-style major blemish: prior DWI conviction
     major_blemish_lp = case_when(
       if_any(
-        c(prev_dwi_n),
+        c(prev_dwi_n, prev_sus1_n, prev_sus2_n, prev_sus3_n),
         ~ !is.na(.x) & .x > 0
       ) ~ 1,
       if_all(
@@ -452,7 +462,8 @@ vehicle_driver_vars <- vehicle_10yr %>%
     
     # Complete prior-record info flag
     prior_record_complete = if_all(
-      c(prev_acc_n, prev_spd_n, prev_oth_n, prev_dwi_n),
+      c(prev_acc_n, prev_spd_n, prev_oth_n, 
+        prev_dwi_n, prev_sus1_n, prev_sus2_n, prev_sus3_n),
       ~ !is.na(.x)
     ),
     
@@ -547,7 +558,8 @@ driver_analysis %>%
     pct_age_missing = mean(is.na(age_clean)),
     pct_sex_missing = mean(is.na(male_driver_lp)),
     pct_bad_record_missing = mean(is.na(bad_record_lp))
-  )
+  ) %>% 
+  print(width = Inf)
 
 ############################################################
 ### driver counts by crash
