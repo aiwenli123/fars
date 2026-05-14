@@ -1,0 +1,3 @@
+bac_sample_status,BAC_COMPLETE_95,n_driver_rows,n_crashes,n_one_vehicle_crashes,n_two_vehicle_crashes
+removed: below 95% BAC-complete state-years,FALSE,150781,117567,84353,33214
+kept: BAC_COMPLETE_95 state-years,TRUE,13100,10342,7584,2758

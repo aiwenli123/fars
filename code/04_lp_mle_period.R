@@ -19,11 +19,7 @@
 #   data/processed/driver_analysis_lp_2015_2024.csv
 #
 # Main outputs:
-#   data/processed/script04_simple_mle_period/lp_period_table2_long.csv
-#   data/processed/script04_simple_mle_period/lp_period_table2_wide_theta.csv
-#   data/processed/script04_simple_mle_period/lp_period_table2_wide_lambda.csv
-#   data/processed/script04_simple_mle_period/lp_period_cell_prevalence_table2.csv
-#   data/processed/script04_simple_mle_period/lp_period_cell_diagnostics.csv
+#   data/processed/script04_simple_mle_period/...
 ################################################################################
 
 rm(list = ls())
@@ -227,6 +223,91 @@ if (!"BAC_COMPLETE_95" %in% names(driver_lp)) {
 
 driver_lp <- driver_lp %>%
   mutate(BAC_COMPLETE_95 = if_else(is.na(BAC_COMPLETE_95), FALSE, BAC_COMPLETE_95))
+
+# ------------------------------------------------------------------------------
+# 2.6 Audit how many crashes are removed by BAC_COMPLETE_95 state-year filter
+# ------------------------------------------------------------------------------
+
+bac_complete_95_audit <- driver_lp %>%
+  mutate(
+    crash_id = paste(YEAR_FILE, ST_CASE, sep = "_")
+  ) %>%
+  group_by(BAC_COMPLETE_95) %>%
+  summarize(
+    n_driver_rows = n(),
+    n_crashes = n_distinct(crash_id),
+    n_one_vehicle_crashes = n_distinct(crash_id[VE_FORMS == 1]),
+    n_two_vehicle_crashes = n_distinct(crash_id[VE_FORMS == 2]),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    bac_sample_status = if_else(
+      BAC_COMPLETE_95,
+      "kept: BAC_COMPLETE_95 state-years",
+      "removed: below 95% BAC-complete state-years"
+    )
+  ) %>%
+  select(bac_sample_status, BAC_COMPLETE_95, everything())
+
+bac_complete_95_audit_overall <- bac_complete_95_audit %>%
+  summarize(
+    n_driver_rows_total = sum(n_driver_rows),
+    n_driver_rows_kept = sum(n_driver_rows[BAC_COMPLETE_95]),
+    n_driver_rows_removed = sum(n_driver_rows[!BAC_COMPLETE_95]),
+    pct_driver_rows_removed = n_driver_rows_removed / n_driver_rows_total,
+    
+    n_crashes_total = sum(n_crashes),
+    n_crashes_kept = sum(n_crashes[BAC_COMPLETE_95]),
+    n_crashes_removed = sum(n_crashes[!BAC_COMPLETE_95]),
+    pct_crashes_removed = n_crashes_removed / n_crashes_total,
+    
+    n_one_vehicle_crashes_total = sum(n_one_vehicle_crashes),
+    n_one_vehicle_crashes_kept = sum(n_one_vehicle_crashes[BAC_COMPLETE_95]),
+    n_one_vehicle_crashes_removed = sum(n_one_vehicle_crashes[!BAC_COMPLETE_95]),
+    pct_one_vehicle_crashes_removed =
+      n_one_vehicle_crashes_removed / n_one_vehicle_crashes_total,
+    
+    n_two_vehicle_crashes_total = sum(n_two_vehicle_crashes),
+    n_two_vehicle_crashes_kept = sum(n_two_vehicle_crashes[BAC_COMPLETE_95]),
+    n_two_vehicle_crashes_removed = sum(n_two_vehicle_crashes[!BAC_COMPLETE_95]),
+    pct_two_vehicle_crashes_removed =
+      n_two_vehicle_crashes_removed / n_two_vehicle_crashes_total
+  )
+
+bac_complete_95_audit_by_year_state <- driver_lp %>%
+  mutate(
+    crash_id = paste(YEAR_FILE, ST_CASE, sep = "_")
+  ) %>%
+  group_by(YEAR, STATE, STATENAME, BAC_COMPLETE_95) %>%
+  summarize(
+    n_driver_rows = n(),
+    n_crashes = n_distinct(crash_id),
+    n_one_vehicle_crashes = n_distinct(crash_id[VE_FORMS == 1]),
+    n_two_vehicle_crashes = n_distinct(crash_id[VE_FORMS == 2]),
+    .groups = "drop"
+  ) %>%
+  arrange(YEAR, STATE)
+
+cat("\nBAC_COMPLETE_95 audit:\n")
+print(bac_complete_95_audit, width = Inf)
+
+cat("\nOverall crashes removed by BAC_COMPLETE_95 filter:\n")
+print(bac_complete_95_audit_overall)
+
+write_csv(
+  bac_complete_95_audit,
+  file.path(out_dir, "bac_complete_95_audit.csv")
+)
+
+write_csv(
+  bac_complete_95_audit_overall,
+  file.path(out_dir, "bac_complete_95_audit_overall.csv")
+)
+
+write_csv(
+  bac_complete_95_audit_by_year_state,
+  file.path(out_dir, "bac_complete_95_audit_by_year_state.csv")
+)
 
 # ------------------------------------------------------------------------------
 # 3. Specifications
@@ -1128,3 +1209,22 @@ ggsave(
   dpi = 300
 )
 
+
+#######################################
+### look at results
+#######################################
+
+# library(tidyverse)
+# 
+# driver_path <- "data/processed/driver_analysis_lp_2015_2024.csv"
+# 
+# out_dir <- "data/processed/script04_simple_mle_period"
+# fig_dir <- "figures/script04_simple_mle_period"
+# 
+# diagnostics <- read_csv(file.path(out_dir, "lp_period_cell_diagnostics.csv"))
+# table2_long <- read.csv(file.path(out_dir, "lp_period_table2_long.csv"))
+# table2_wide_theta <- read.csv(file.path(out_dir, "lp_period_table2_wide_theta.csv"))
+# table2_wide_lambda <- read.csv(file.path(out_dir, "lp_period_table2_wide_lambda.csv"))
+# cell_prevalence <- read.csv(file.path(out_dir, "lp_period_cell_prevalence_table2.csv")) # size of each cell
+
+# driver_lp <- read_csv(driver_path, show_col_types = FALSE) %>% rename_with(toupper)
