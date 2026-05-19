@@ -80,7 +80,8 @@ definition_levels <- c(
   "Police drinking, unknown as no",
   "Vehicle DR_DRINK, complete case",
   "Observed BAC >= 0.08",
-  "Observed BAC >= 0.10"
+  "Observed BAC >= 0.10",
+  "Observed BAC >= 0.05"
 )
 
 # ------------------------------------------------------------------------------

@@ -175,6 +175,12 @@ driver_lp <- driver_lp %>%
       TRUE ~ NA_real_
     ),
     
+    bac_ge_05 = case_when(
+      bac_valid & ALC_RES >= 50 ~ 1,
+      bac_valid & ALC_RES < 50 ~ 0,
+      TRUE ~ NA_real_
+    ),
+    
     weekend_lp = as.logical(WEEKEND_LP),
     
     # Period-based cell definitions.
@@ -319,14 +325,16 @@ alcohol_definitions <- tibble(
     "police_drinking_unknown_as_no",
     "vehicle_dr_drink_complete",
     "bac_ge_08",
-    "bac_ge_10"
+    "bac_ge_10",
+    "bac_ge_05"
   ),
   alcohol_definition_label = c(
     "Police drinking, complete case",
     "Police drinking, unknown as no",
     "Vehicle DR_DRINK, complete case",
     "Observed BAC >= 0.08",
-    "Observed BAC >= 0.10"
+    "Observed BAC >= 0.10",
+    "Observed BAC >= 0.05"
   )
 )
 
