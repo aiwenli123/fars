@@ -1,6 +1,6 @@
 # FARS Drunk Driving Replication Project
 
-This repository contains code for preparing recent Fatality Analysis Reporting System (FARS) data for a Levitt–Porter-style drunk driving replication using 2015–2024 FARS National CSV files.
+This repository contains code for preparing recent Fatality Analysis Reporting System (FARS) data using 2015–2024 FARS National CSV files, inspired by Levitt & Porter, 2001.
 
 ## Raw data
 
@@ -14,7 +14,7 @@ Place the raw yearly folders in:
 data/raw/
 ```
 
-## Alcohol variable decision
+## Definition of "drunk"
 
 For 2015–2024 FARS, `person$DRINKING` and `vehicle$DR_DRINK` do not match perfectly among driver rows. Mismatches are concentrated among cases where `person$DRINKING` is No, Unknown, or Not Reported.
 
@@ -22,11 +22,12 @@ In many of these cases, `vehicle$DR_DRINK` classifies the driver as drinking whe
 
 For this reason, we can treat `DRINKING`, `DR_DRINK`, and BAC-threshold definitions as separate alcohol classifications rather than assuming they are interchangeable.
 
-The current plan is to compare results across several definitions of alcohol involvement:
+We use several different definitions of alcohol involvement:
 
 - raw police-reported alcohol involvement using `person$DRINKING`;
 - police-reported alcohol involvement with unknown or not reported values treated as no;
 - vehicle-level drinking involvement using `vehicle$DR_DRINK`;
+- observed BAC at or above 0.05;
 - observed BAC at or above 0.08;
 - observed BAC at or above 0.10.
 
@@ -171,7 +172,7 @@ Count of minor prior driving-record blemishes, based on previous crashes, previo
 major_blemishes_lp
 ```
 
-Indicator for whether the driver has a major prior driving-record blemish. The current version considers prior DWI and license suspension/revocation variables (license suspension variables are missing for 2015-2017 though).
+Indicator for whether the driver has a major prior driving-record blemish. The current version considers prior DWI and license suspension/revocation variables (note that license suspension variables are missing for 2015-2017).
 
 ```text
 bad_record_lp
@@ -200,7 +201,7 @@ data/processed/person_2015_2024_core.csv
 data/processed/vehicle_2015_2024_core.csv
 ```
 
-The script saves driver/crash analysis files:
+Driver/crash analysis files:
 
 ```text
 data/processed/driver_analysis_2015_2024.csv
@@ -261,12 +262,13 @@ data/processed/driver_analysis_lp_2015_2024.csv,
 
 created in '01_clean_data.R'.
 
-The script compares five alcohol definitions:
+The script compares six alcohol definitions:
 
 ```text
 Police drinking, complete case
 Police drinking, unknown as no
 Vehicle DR_DRINK, complete case
+Observed BAC >= 0.05
 Observed BAC >= 0.08
 Observed BAC >= 0.10
 ```
@@ -325,4 +327,73 @@ The script saves 6 main CSV tables and four main plots in
 ```text
 data/processed/script03_tables/...
 figures/script03_plots/...
+```
+
+### `04_lp_mle_period.R`
+
+Estimates a Levitt-Porter-style maximum likelihood model using the cleaned 2015-2024 FARS sample.
+
+This script moves beyond the simple crash-count estimates from `02_crash_type_counts.R` by estimating Levitt-Porter-style risk parameters using maximum likelihood (Levitt-Porter also used maximum likelihood in their 2001 paper). The script is designed to reproduce the spirit of Levitt-Porter's main Table 2 results, while adapting the setup to recent FARS data and the 2015-2024 period.
+
+The script estimates two main parameters:
+
+```text
+theta
+lambda
+```
+
+The script first estimates 'theta' using only two-car crashes. It then uses the estimated cell-level drinking-to-sober driver prevalence, N_hat, from the two-car model to estimate 'lambda' from the one-car crash counts.
+
+Unlike the original Levitt-Porter paper, this script uses period-based cells rather than year-based cells. The periods are:
+
+```text
+pre_covid  = 2015-2019
+covid      = 2020-2021
+post_covid = 2022-2024
+```
+
+This is partly because the recent sample has fewer years than the original Levitt-Porter setting, so period-based cells help avoid making the cell structure too sparse.
+
+**Main input**
+
+```text
+data/processed/driver_analysis_lp_2015_2024.csv
+```
+
+created in '01_clean_data.R'
+
+**Sample variants**
+
+The script runs each specification on two samples:
+
+```text
+All state-years
+BAC-complete 95% state-years
+```
+
+The BAC-complete sample keeps only state-years where BAC reporting among police-reported drinking drivers is at least 95% complete; same as what Levitt-Porter did.
+
+**Cell-size checks**
+
+The script runs each model twice:
+
+```text
+min_n2 = 1
+min_n2 = 5
+```
+
+where 'n2' is the number of complete two-car crashes in a cell. The 'min_n2 = 1' version keeps all cells with at least one complete two-car crash. The 'min_n2 = 5' version drops very sparse cells and is useful as a sensitivity check, since highly detailed cell specifications (e.g., 'hour x state x period x weekend') can create many cells with very small DD/DS/SS counts.
+
+**Outputs**
+
+The main model outputs are saved in:
+
+```text
+data/processed/script04_simple_mle_period/...
+```
+
+Figures are saved in:
+
+```text
+figures/script04_simple_mle_period/...
 ```
