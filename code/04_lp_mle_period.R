@@ -1214,17 +1214,30 @@ ggsave(
 ### look at results
 #######################################
 
-# library(tidyverse)
-# 
-# driver_path <- "data/processed/driver_analysis_lp_2015_2024.csv"
-# 
-# out_dir <- "data/processed/script04_simple_mle_period"
-# fig_dir <- "figures/script04_simple_mle_period"
-# 
-# diagnostics <- read_csv(file.path(out_dir, "lp_period_cell_diagnostics.csv"))
-# table2_long <- read.csv(file.path(out_dir, "lp_period_table2_long.csv"))
-# table2_wide_theta <- read.csv(file.path(out_dir, "lp_period_table2_wide_theta.csv"))
-# table2_wide_lambda <- read.csv(file.path(out_dir, "lp_period_table2_wide_lambda.csv"))
-# cell_prevalence <- read.csv(file.path(out_dir, "lp_period_cell_prevalence_table2.csv")) # size of each cell
+rm(list=ls())
+library(tidyverse)
 
-# driver_lp <- read_csv(driver_path, show_col_types = FALSE) %>% rename_with(toupper)
+driver_path <- "data/processed/driver_analysis_lp_2015_2024.csv"
+
+out_dir <- "data/processed/script04_simple_mle_period"
+fig_dir <- "figures/script04_simple_mle_period"
+
+diagnostics <- read_csv(file.path(out_dir, "lp_period_cell_diagnostics.csv"))
+table2_long <- read.csv(file.path(out_dir, "lp_period_table2_long.csv"))
+table2_wide_theta <- read.csv(file.path(out_dir, "lp_period_table2_wide_theta.csv"))
+table2_wide_lambda <- read.csv(file.path(out_dir, "lp_period_table2_wide_lambda.csv"))
+cell_prevalence <- read.csv(file.path(out_dir, "lp_period_cell_prevalence_table2.csv")) # size of each cell
+
+driver_lp <- read_csv(driver_path, show_col_types = FALSE) %>% rename_with(toupper)
+
+
+# original crash type counts
+crash_type_counts <- read.csv("data/processed/lp_crash_type_counts_2015_2024.csv")
+onecar_crash_type_counts <- read.csv("data/processed/lp_one_vehicle_counts_2015_2024.csv")
+
+# audit of BAC_COMPLETE_95 filter
+bac_95_audit <- read.csv(file.path(out_dir, "bac_complete_95_audit.csv"))
+bac_95_audit_overall <- read.csv(file.path(out_dir, "bac_complete_95_audit_overall.csv"))
+bac_95_audit_by_year_state <- read.csv(file.path(out_dir, "bac_complete_95_audit_by_year_state.csv"))
+
+var_names <- read.csv("data/processed/fars_variable_reference_for_replication.csv")
