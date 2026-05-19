@@ -124,6 +124,12 @@ driver_lp_clean <- driver_lp_clean %>%
       TRUE ~ NA_real_
     ),
     
+    bac_ge_05 = case_when(
+      bac_valid & ALC_RES >= 50 ~ 1,
+      bac_valid & ALC_RES < 50 ~ 0,
+      TRUE ~ NA_real_
+    ),
+    
     # Period variable
     covid_period = case_when(
       YEAR %in% 2015:2019 ~ "2015-2019 pre-COVID",
@@ -142,7 +148,8 @@ alcohol_definition_vars <- c(
   "police_drinking_unknown_as_no",
   "vehicle_dr_drink_complete",
   "bac_ge_08",
-  "bac_ge_10"
+  "bac_ge_10",
+  "bac_ge_05"
 )
 
 driver_long <- driver_lp_clean %>%
@@ -163,6 +170,8 @@ driver_long <- driver_lp_clean %>%
         "Observed BAC >= 0.08",
       alcohol_definition == "bac_ge_10" ~
         "Observed BAC >= 0.10",
+      alcohol_definition == "bac_ge_05" ~
+        "Observed BAC >= 0.05",
       TRUE ~ alcohol_definition
     ),
     driver_status_label = case_when(
@@ -529,7 +538,7 @@ theta_by_covid_period_wide <- theta_simple %>%
 cat("\nTheta table by COVID period:\n")
 print(theta_by_covid_period_wide, n = Inf)
 
-# Optional: save these quick-view tables too
+# save these quick-view tables too
 write_csv(
   theta_all_years_wide,
   file.path(out_dir, "lp_theta_simple_all_years_quick_table.csv")

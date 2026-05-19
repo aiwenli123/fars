@@ -189,6 +189,7 @@ var_reference <- tribble(
   "derived", "police_drinking_unknown_as_no", "Cleaned police drinking variable treating unknown/not reported as not drinking", "Sensitivity definition; useful because missing/unknown drinking classifications are common",
   "derived", "bac_valid", "Indicator for valid observed BAC result", "Needed before constructing BAC threshold definitions",
   "derived", "bac_value", "BAC value converted from FARS integer scale to decimal BAC", "Used for descriptive BAC checks and BAC threshold definitions",
+  "derived", "bac_ge_05", "Indicator for observed BAC >= 0.05", "For policy question of lowering legal BAC threshold",
   "derived", "bac_ge_08", "Indicator for observed BAC >= 0.08", "Modern legal-threshold drunk definition",
   "derived", "bac_ge_10", "Indicator for observed BAC >= 0.10", "Historical LP-comparable legal-threshold drunk definition",
   "derived", "bac_tested", "Indicator for whether a valid BAC test result is available", "Needed for BAC-completeness summaries by state-year",

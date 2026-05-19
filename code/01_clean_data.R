@@ -387,6 +387,12 @@ drivers_person <- person_10yr %>%
       bac_valid & ALC_RES >= 100 ~ 1,
       bac_valid & ALC_RES < 100 ~ 0,
       TRUE ~ NA_real_
+    ),
+    
+    bac_ge_05 = case_when(
+      bac_valid & ALC_RES >= 50 ~ 1,
+      bac_valid & ALC_RES < 50 ~ 0,
+      TRUE ~ NA_real_
     )
   )
 
