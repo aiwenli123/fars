@@ -146,6 +146,12 @@ bac_ge_10
 
 Equals 1 if observed BAC is at least 0.10 and equals 0 if observed BAC is valid but below 0.10.
 
+```text
+bac_ge_05
+```
+
+Equals 1 if observed BAC is at least 0.05 and equals 0 if observed BAC is valid but below 0.05.
+
 **Driver characteristics variables created**
 
 The script also creates variables for later Levitt-Porter extensions.
@@ -397,3 +403,56 @@ Figures are saved in:
 ```text
 figures/script04_simple_mle_period/...
 ```
+
+### `05_mi_exploration.R`
+
+Explores the FARS multiple imputation BAC files for 2024 just to explore their structure. This script reads the three alcohol imputation files downloaded from FARS:
+
+```text
+MIACC
+MIDRVACC
+MIPER
+```
+
+We conclude that 'MIPER' is the most useful file for this project because it has driver/person-level identifiers, which allow the imputed BAC values to be joined directly to the cleaned driver-level Levitt-Porter sample:
+
+```text
+ST_CASE
+VEH_NO
+PER_NO
+```
+
+### '06_prep_mi_data.R'
+
+Prepares driver-level multiple imputation BAC datasets for 2015-2024. This script reads and combines the yearly 'MIPER' files from 2015 through 2024, joins them to the cleaned driver-level Levitt-Porter sample, checks merge success, and creates analysis-ready datasets for future multiple imputation analyses.
+
+It also creates a combined BAC variable that uses the exact observed BAC value when valid observed BAC is available, and uses the corresponding MIPER imputed BAC value only when observed BAC is missing or invalid. This is useful because observed BAC is more precise (three significant digits), while MIPER is only recorded to two significant digits.
+
+**Main inputs**
+
+For each year from 2015 through 2024, the script expects a MIPER file in the yearly raw FARS folder, with either uppercase or lowercase naming:
+
+```text
+data/processed/driver_analysis_lp_2015_2024.csv
+data/raw/FARS{year}NationalCSV/MIPER.csv
+data/raw/FARS{year}NationalCSV/miper.csv
+```
+
+**Main outputs**
+
+```text
+data/processed/driver_miper_wide_2015_2024.csv
+data/processed/driver_miper_long_2015_2024.csv
+```
+
+The wide file keeps one row per driver with all ten imputed BAC columns. The long file keeps one row per driver per imputation, making it easier to run the same analysis separately for each of the ten completed datasets.
+
+We also save diagnostic outputs to check how much BAC information is observed versus multiply imputed, and to confirm that observed BAC values generally agree with the MIPER values when observed BAC is available:
+
+```text
+data/processed/mi_checks/...
+```
+
+
+
+
