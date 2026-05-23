@@ -422,9 +422,9 @@ VEH_NO
 PER_NO
 ```
 
-### '06_prep_mi_data.R'
+### `06_prep_mi_data.R`
 
-Prepares driver-level multiple imputation BAC datasets for 2015-2024. This script reads and combines the yearly 'MIPER' files from 2015 through 2024, joins them to the cleaned driver-level Levitt-Porter sample, checks merge success, and creates analysis-ready datasets for future multiple imputation analyses.
+Prepares driver-level multiple imputation BAC datasets for 2015-2024. This script reads and combines the yearly `MIPER` files from 2015 through 2024, joins them to the cleaned driver-level Levitt-Porter sample, checks merge success, and creates analysis-ready datasets for future multiple imputation analyses.
 
 It also creates a combined BAC variable that uses the exact observed BAC value when valid observed BAC is available, and uses the corresponding MIPER imputed BAC value only when observed BAC is missing or invalid. This is useful because observed BAC is more precise (three significant digits), while MIPER is only recorded to two significant digits.
 
