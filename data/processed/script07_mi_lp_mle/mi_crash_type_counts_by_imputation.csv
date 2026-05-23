@@ -1,0 +1,361 @@
+analysis_sample,imputation,threshold,threshold_label,cell_spec,cell_spec_label,min_n2,min_n2_label,DD,DS,SS,D,S,missing_or_ambiguous,total_crashes,complete_two_vehicle,complete_one_vehicle,pct_missing_or_ambiguous
+mi_all_state_years,1,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3122,16406,16444,43289,48648,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2507,15565,17900,40159,51778,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,1,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2026,14709,19237,37306,54631,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3035,16406,16531,43683,48254,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2432,15543,17997,40519,51418,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,2,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,1989,14654,19329,37670,54267,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3181,16341,16450,43709,48228,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2545,15530,17897,40531,51406,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,3,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2073,14726,19173,37698,54239,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3141,16342,16489,43890,48047,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2511,15504,17957,40775,51162,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,4,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2041,14624,19307,37960,53977,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3171,16402,16399,43758,48179,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2519,15601,17852,40657,51280,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,5,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2048,14745,19179,37761,54176,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3127,16399,16446,43949,47988,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2515,15557,17900,40788,51149,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,6,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2023,14681,19268,37858,54079,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3112,16433,16427,44063,47874,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2517,15550,17905,40839,51098,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,7,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2041,14643,19288,37999,53938,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3162,16350,16460,43684,48253,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2541,15561,17870,40563,51374,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,8,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2081,14685,19206,37729,54208,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3133,16246,16593,43688,48249,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2527,15418,18027,40466,51471,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,9,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2048,14562,19362,37609,54328,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,all_data,all data,1,No n2 filter,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,all_data,all data,5,n2 >= 5,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour,hour,1,No n2 filter,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour,hour,5,n2 >= 5,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_period,hour x period,1,No n2 filter,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_period,hour x period,5,n2 >= 5,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,1,No n2 filter,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_period_weekend,hour x period x weekend,5,n2 >= 5,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_state_period,hour x state x period,1,No n2 filter,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_state_period,hour x state x period,5,n2 >= 5,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.05,BAC >= 0.05,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,3045,16388,16539,43626,48311,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,all_data,all data,1,No n2 filter,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,all_data,all data,5,n2 >= 5,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour,hour,1,No n2 filter,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour,hour,5,n2 >= 5,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_period,hour x period,1,No n2 filter,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_period,hour x period,5,n2 >= 5,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,1,No n2 filter,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_period_weekend,hour x period x weekend,5,n2 >= 5,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_state_period,hour x state x period,1,No n2 filter,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_state_period,hour x state x period,5,n2 >= 5,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.08,BAC >= 0.08,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,2442,15569,17961,40393,51544,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,all_data,all data,1,No n2 filter,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,all_data,all data,5,n2 >= 5,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour,hour,1,No n2 filter,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour,hour,5,n2 >= 5,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_period,hour x period,1,No n2 filter,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_period,hour x period,5,n2 >= 5,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,1,No n2 filter,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_period_weekend,hour x period x weekend,5,n2 >= 5,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_state_period,hour x state x period,1,No n2 filter,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_state_period,hour x state x period,5,n2 >= 5,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,1,No n2 filter,1974,14686,19312,37534,54403,0,127909,35972,91937,0
+mi_all_state_years,10,0.1,BAC >= 0.10,hour_state_period_weekend,hour x state x period x weekend,5,n2 >= 5,1974,14686,19312,37534,54403,0,127909,35972,91937,0

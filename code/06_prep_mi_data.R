@@ -645,3 +645,17 @@ message("Saved long MI driver dataset to: ",
         file.path(processed_dir, "driver_miper_long_2015_2024.csv"))
 
 message("Saved checks and summaries to: ", check_dir)
+
+
+
+#############################################
+### read files to check
+#############################################
+
+library(tidyverse)
+
+driver_miper_wide <- read.csv("data/processed/driver_miper_wide_2015_2024.csv")
+glimpse(driver_miper_wide)
+
+driver_miper_long <- read.csv("data/processed/driver_miper_long_2015_2024.csv")
+glimpse(driver_miper_long)
