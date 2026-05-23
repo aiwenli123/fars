@@ -7,6 +7,7 @@
 #   1. Estimate theta using only two-car crashes: DD, DS, SS.
 #   2. Estimate lambda in a second-stage plug-in model using one-car crashes
 #      and N_hat from the two-car model.
+#   2.5 Record cell-level N_hat values and summarize them in the main output.
 #   3. Replace YEAR-based cells with PERIOD-based cells:
 #        pre_covid  = 2015-2019
 #        covid      = 2020-2021
@@ -634,7 +635,14 @@ fit_theta_simple <- function(counts,
         n_theta_cells_excluded_by_min_n2 = nrow(counts_two_available),
         n_two_vehicle_complete_available = sum(counts_two_available$n2),
         n_two_vehicle_complete_used = 0,
-        pct_two_vehicle_complete_used = 0
+        pct_two_vehicle_complete_used = 0,
+        n_cells = 0,
+        N_hat_median = NA_real_,
+        N_hat_p25 = NA_real_,
+        N_hat_p75 = NA_real_,
+        drunk_share_median = NA_real_,
+        drunk_share_p25 = NA_real_,
+        drunk_share_p75 = NA_real_
       ),
       cell_prevalence = tibble()
     ))
@@ -711,6 +719,18 @@ fit_theta_simple <- function(counts,
     n_two_vehicle_complete_available = n_two_available,
     n_two_vehicle_complete_used = n_two_used,
     pct_two_vehicle_complete_used = safe_divide(n_two_used, n_two_available),
+    
+    # Summary of the profiled cell-level N-hat values.
+    # In Levitt-Porter notation, N = N_D / N_S is the ratio of drinking-driver
+    # exposure to sober-driver exposure. frac_drinking_hat transforms this
+    # ratio into an implied drinking-driver share: N / (1 + N).
+    n_cells = nrow(cell_prevalence),
+    N_hat_median = median(cell_prevalence$N_hat_drinking_to_sober, na.rm = TRUE),
+    N_hat_p25 = as.numeric(quantile(cell_prevalence$N_hat_drinking_to_sober, 0.25, na.rm = TRUE)),
+    N_hat_p75 = as.numeric(quantile(cell_prevalence$N_hat_drinking_to_sober, 0.75, na.rm = TRUE)),
+    drunk_share_median = median(cell_prevalence$frac_drinking_hat, na.rm = TRUE),
+    drunk_share_p25 = as.numeric(quantile(cell_prevalence$frac_drinking_hat, 0.25, na.rm = TRUE)),
+    drunk_share_p75 = as.numeric(quantile(cell_prevalence$frac_drinking_hat, 0.75, na.rm = TRUE)),
     
     n_two_vehicle_all = sum(counts$total_two_vehicle),
     pct_two_vehicle_missing_or_ambiguous =
@@ -1063,6 +1083,42 @@ write_csv(
 write_csv(
   table2_cells,
   file.path(out_dir, "lp_period_cell_prevalence_table2.csv")
+)
+
+# Same cell-level information, saved under a more explicit name for N-hat diagnostics.
+# This table has one row per specification-cell, so it preserves the actual
+# profiled N-hat values instead of only reporting summary statistics.
+table2_cell_N_hat_values <- table2_cells %>%
+  select(
+    sample_variant,
+    sample_variant_label,
+    alcohol_definition,
+    alcohol_definition_label,
+    cell_spec,
+    cell_spec_label,
+    min_n2,
+    min_n2_label,
+    cell_id,
+    theta,
+    eta_hat,
+    N_hat_drinking_to_sober,
+    frac_drinking_hat,
+    DD,
+    DS,
+    SS,
+    D,
+    S,
+    n2,
+    n1,
+    total_two_vehicle,
+    total_one_vehicle,
+    missing_two_vehicle,
+    missing_one_vehicle
+  )
+
+write_csv(
+  table2_cell_N_hat_values,
+  file.path(out_dir, "lp_period_cell_N_hat_values.csv")
 )
 
 write_csv(
