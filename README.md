@@ -1,6 +1,6 @@
 # FARS Drunk Driving Replication Project
 
-This repository contains code for preparing recent Fatality Analysis Reporting System (FARS) data using 2015–2024 FARS National CSV files, inspired by Levitt & Porter, 2001.
+This repository contains code for preparing and analyzing Fatality Analysis Reporting System (FARS) data using 2015–2024 FARS National CSV files, inspired by Levitt & Porter, 2001, and Dunn & Tefft, 2020.
 
 ## Raw data
 
@@ -24,8 +24,8 @@ For this reason, we can treat `DRINKING`, `DR_DRINK`, and BAC-threshold definiti
 
 We use several different definitions of alcohol involvement:
 
-- raw police-reported alcohol involvement using `person$DRINKING`;
-- police-reported alcohol involvement with unknown or not reported values treated as no;
+- raw police-reported alcohol involvement using `person$DRINKING`: 1 if `person$DRINKING == 1`, equals 0 if `person$DRINKING == 0`, and `NA` otherwise
+- police-reported alcohol involvement with unknown or not reported values treated as no: 1 if `person$DRINKING == 1`, and equals 0 otherwise
 - vehicle-level drinking involvement using `vehicle$DR_DRINK`;
 - observed BAC at or above 0.05;
 - observed BAC at or above 0.08;
@@ -79,112 +79,15 @@ data/raw/FARS{year}NationalCSV/person.csv
 data/raw/FARS{year}NationalCSV/vehicle.csv
 ```
 
-For example, for 2015:
-
-```text
-data/raw/FARS2015NationalCSV/accident.csv
-data/raw/FARS2015NationalCSV/person.csv
-data/raw/FARS2015NationalCSV/vehicle.csv
-```
-
-The full expected folder structure is:
-
-```text
-data/raw/
-  FARS2015NationalCSV/
-    accident.csv
-    person.csv
-    vehicle.csv
-  FARS2016NationalCSV/
-    accident.csv
-    person.csv
-    vehicle.csv
-  ...
-  FARS2024NationalCSV/
-    accident.csv
-    person.csv
-    vehicle.csv
-```
-
-**Alcohol variables created**
-
-The script creates several alcohol-involvement variables:
-
-```text
-police_drinking_complete
-```
-
-Equals 1 if `person$DRINKING == 1`, equals 0 if `person$DRINKING == 0`, and is missing otherwise.
-
-```text
-police_drinking_unknown_as_no
-```
-
-Equals 1 if `person$DRINKING == 1`, and equals 0 otherwise. This treats unknown or not reported alcohol involvement as no reported alcohol involvement.
-
-```text
-bac_valid
-```
-
-Indicates whether `person$ALC_RES` appears to contain a valid observed BAC result.
-
-```text
-bac_value
-```
-
-Observed BAC value, created as `ALC_RES / 1000` for valid BAC values.
-
-```text
-bac_ge_08
-```
-
-Equals 1 if observed BAC is at least 0.08 and equals 0 if observed BAC is valid but below 0.08.
-
-```text
-bac_ge_10
-```
-
-Equals 1 if observed BAC is at least 0.10 and equals 0 if observed BAC is valid but below 0.10.
-
-```text
-bac_ge_05
-```
-
-Equals 1 if observed BAC is at least 0.05 and equals 0 if observed BAC is valid but below 0.05.
-
 **Driver characteristics variables created**
 
-The script also creates variables for later Levitt-Porter extensions.
+The script also creates other driver variables for potential extensions based on Levitt & Porter, 2001:
 
-```text
-young_driver_lp
-```
-
-Indicator for whether the driver is under age 25.
-
-```text
-male_driver_lp
-```
-
-Indicator for whether the driver is male.
-
-```text
-minor_blemishes_lp
-```
-
-Count of minor prior driving-record blemishes, based on previous crashes, previous speeding convictions, and previous other moving violations.
-
-```text
-major_blemishes_lp
-```
-
-Indicator for whether the driver has a major prior driving-record blemish. The current version considers prior DWI and license suspension/revocation variables (note that license suspension variables are missing for 2015-2017).
-
-```text
-bad_record_lp
-```
-
-Levitt-Porter-style bad previous driving record indicator. A driver is classified as having a bad prior record if they have either at least two minor blemishes, or at least one major blemish.
+- `young_driver_lp`: Indicator for whether the driver is under age 25.
+- `male_driver_lp`: Indicator for whether the driver is male.
+- `minor_blemishes_lp`: Count of minor prior driving-record blemishes, based on previous crashes, previous speeding convictions, and previous other moving violations.
+- `major_blemishes_lp`: Indicator for whether the driver has a major prior driving-record blemish. The current version considers prior DWI and license suspension/revocation variables (note that license suspension variables are missing for 2015-2017).
+- `bad_record_lp`: Levitt-Porter-style bad previous driving record indicator. A driver is classified as having a bad prior record if they have either at least two minor blemishes, or at least one major blemish.
 
 **Levitt-Porter-style sample**
 
@@ -192,7 +95,7 @@ The current cleaned analysis sample keeps:
 
 - driver rows, using `PER_TYP == 1`;
 - one- and two-vehicle crashes, using `VE_FORMS %in% c(1, 2)`;
-- nighttime crashes, currently defined as crashes from 8:00pm through 4:59am;
+- nighttime crashes, currently defined as crashes from 8:00pm through 4:59am, inclusive;
 - crashes where the number of driver rows equals the number of motor vehicles in transport.
 
 The main cleaned analysis file has one row per driver. For two-vehicle crashes, there should be two driver rows per crash.
@@ -216,13 +119,11 @@ data/processed/lp_clean_crashes_2015_2024.csv
 data/processed/bac_completeness_state_year_2015_2024.csv
 ```
 
-The main analysis file is:
+The main cleaned analysis file is:
 
 ```text
 data/processed/driver_analysis_lp_2015_2024.csv
 ```
-
-This file contains one row per driver in the cleaned one- and two-vehicle nighttime fatal crash sample.
 
 The alcohol-variable diagnostic files are:
 
@@ -252,11 +153,7 @@ D = one drinking driver
 S = one sober driver
 ```
 
-Crashes that cannot be classified because of missing or ambiguous driver drinking status are labeled:
-
-```text
-missing_or_ambiguous
-```
+Crashes that cannot be classified because of missing or ambiguous driver drinking status are labeled `missing_or_ambiguous`.
 
 The script then computes simple Levitt-Porter-style two-car relative risk estimates (theta) using the crash type counts.
 
@@ -339,7 +236,7 @@ figures/script03_plots/...
 
 Estimates a Levitt-Porter-style maximum likelihood model using the cleaned 2015-2024 FARS sample.
 
-This script moves beyond the simple crash-count estimates from `02_crash_type_counts.R` by estimating Levitt-Porter-style risk parameters using maximum likelihood (Levitt-Porter also used maximum likelihood in their 2001 paper). The script is designed to reproduce the spirit of Levitt-Porter's main Table 2 results, while adapting the setup to recent FARS data and the 2015-2024 period.
+This script moves beyond the simple crash-count estimates from `02_crash_type_counts.R` by estimating Levitt-Porter-style risk parameters using maximum likelihood (Levitt-Porter also used MLE in their 2001 paper). The script is designed to reproduce the spirit of Levitt-Porter's main Table 2 results, while adapting the setup to recent FARS data and the 2015-2024 period.
 
 The script estimates two main parameters:
 
@@ -453,6 +350,45 @@ We also save diagnostic outputs to check how much BAC information is observed ve
 data/processed/mi_checks/...
 ```
 
+### `07_mi_lp_mle.R`
 
+Estimates the LP-style MLE using the multiple imputation BAC data prepared in `06_prep_mi_data.R`.
+
+This script uses the same MLE method as in `04_lp_mle_period.R`, and extends on script 04 by comparing raw measured BAC estimates with estimates based on FARS MIPER imputed BAC.
+
+The script runs the analysis for three definitions of `drunk`:
+
+```text
+BAC >= 0.05
+BAC >= 0.08
+BAC >= 0.10
+```
+
+**Analysis samples**
+
+The script compares four analysis samples:
+
+```text
+A. Raw BAC, all state-years
+B. Raw BAC, 95% complete state-years
+C. MI BAC, same 95% complete state-years
+D. MI BAC, all state-years
+```
+
+Comparing the four samples helps show whether differences in `theta` and `lambda` come from the 95% completeness restriction, from imputing missing BAC, or from adding back all state-years after imputation.
+
+**Outputs**
+
+All main outputs are saved in:
+
+```text
+data/processed/script07_mi_lp_mle/...
+```
+
+Figures are saved in:
+
+```text
+figures/script07_mi_lp_mle/...
+```
 
 
