@@ -1273,6 +1273,41 @@ write_csv(crash_type_counts_raw_vs_mi, file.path(out_dir, "crash_type_counts_raw
 # 9. Quick plots
 # ------------------------------------------------------------------------------
 
+# read file if running from here
+
+comparison_long <- read.csv(file.path(out_dir, "lp_mle_raw_vs_mi_comparison.csv"))
+cell_specs <- tibble(
+  cell_spec = c(
+    "all_data",
+    "hour",
+    "hour_period",
+    "hour_period_weekend",
+    "hour_state_period",
+    "hour_state_period_weekend"
+  ),
+  cell_var = c(
+    "CELL_ALL",
+    "CELL_HOUR_07",
+    "CELL_HOUR_PERIOD_07",
+    "CELL_HOUR_PERIOD_WEEKEND_07",
+    "CELL_HOUR_STATE_PERIOD_07",
+    "CELL_HOUR_STATE_PERIOD_WEEKEND_07"
+  ),
+  cell_spec_label = c(
+    "all data",
+    "hour",
+    "hour x period",
+    "hour x period x weekend",
+    "hour x state x period",
+    "hour x state x period x weekend"
+  )
+)
+min_n2_specs <- tibble(
+  min_n2 = c(1, 5),
+  min_n2_label = c("No n2 filter", "n2 >= 5")
+)
+
+
 plot_theta <- comparison_long %>%
   filter(parameter == "theta") %>%
   mutate(
@@ -1280,7 +1315,13 @@ plot_theta <- comparison_long %>%
     cell_spec_label = factor(cell_spec_label, levels = cell_specs$cell_spec_label),
     min_n2_label = factor(min_n2_label, levels = min_n2_specs$min_n2_label)
   ) %>%
-  ggplot(aes(x = cell_spec_label, y = estimate, group = analysis_label, linetype = analysis_label)) +
+  ggplot(aes(
+    x = cell_spec_label,
+    y = estimate,
+    group = analysis_label,
+    linetype = analysis_label,
+    color = analysis_label
+  )) +
   geom_line() +
   geom_point(size = 2) +
   facet_grid(threshold_label ~ min_n2_label, scales = "free_y") +
@@ -1289,7 +1330,8 @@ plot_theta <- comparison_long %>%
     title = "Theta: Raw BAC and MI BAC Sample Comparisons",
     x = "Cell specification",
     y = expression(theta),
-    linetype = "Analysis sample"
+    linetype = "Analysis sample",
+    color = "Analysis sample"
   ) +
   theme_minimal(base_size = 12)
 
@@ -1308,7 +1350,13 @@ plot_lambda <- comparison_long %>%
     cell_spec_label = factor(cell_spec_label, levels = cell_specs$cell_spec_label),
     min_n2_label = factor(min_n2_label, levels = min_n2_specs$min_n2_label)
   ) %>%
-  ggplot(aes(x = cell_spec_label, y = estimate, group = analysis_label, linetype = analysis_label)) +
+  ggplot(aes(
+    x = cell_spec_label,
+    y = estimate,
+    group = analysis_label,
+    linetype = analysis_label,
+    color = analysis_label
+  )) +
   geom_line() +
   geom_point(size = 2) +
   facet_grid(threshold_label ~ min_n2_label, scales = "free_y") +
@@ -1317,7 +1365,8 @@ plot_lambda <- comparison_long %>%
     title = "Lambda: Raw BAC and MI BAC Sample Comparisons",
     x = "Cell specification",
     y = expression(lambda),
-    linetype = "Analysis sample"
+    linetype = "Analysis sample",
+    color = "Analysis sample"
   ) +
   theme_minimal(base_size = 12)
 
@@ -1329,3 +1378,96 @@ ggsave(
   dpi = 300
 )
 
+# cap horizontal axis at 20 bc hard to see left tail
+
+plot_theta_20 <- comparison_long %>%
+  filter(parameter == "theta") %>%
+  mutate(
+    analysis_label = factor(analysis_label, levels = analysis_sample_labels$analysis_label),
+    cell_spec_label = factor(cell_spec_label, levels = cell_specs$cell_spec_label),
+    min_n2_label = factor(min_n2_label, levels = min_n2_specs$min_n2_label)
+  ) %>%
+  ggplot(aes(
+    x = cell_spec_label,
+    y = estimate,
+    group = analysis_label,
+    linetype = analysis_label,
+    color = analysis_label
+  )) +
+  geom_line() +
+  geom_point(size = 2) +
+  facet_grid(threshold_label ~ min_n2_label, scales = "free_y") +
+  coord_flip(ylim = c(0, 20)) +
+  labs(
+    title = "Theta: Raw BAC and MI BAC Sample Comparisons",
+    x = "Cell specification",
+    y = expression(theta),
+    linetype = "Analysis sample",
+    color = "Analysis sample"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggsave(
+  file.path(fig_dir, "theta_raw_vs_mi_four_samples_xmax20.png"),
+  plot_theta_20,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+plot_lambda_20 <- comparison_long %>%
+  filter(parameter == "lambda") %>%
+  mutate(
+    analysis_label = factor(analysis_label, levels = analysis_sample_labels$analysis_label),
+    cell_spec_label = factor(cell_spec_label, levels = cell_specs$cell_spec_label),
+    min_n2_label = factor(min_n2_label, levels = min_n2_specs$min_n2_label)
+  ) %>%
+  ggplot(aes(
+    x = cell_spec_label,
+    y = estimate,
+    group = analysis_label,
+    linetype = analysis_label,
+    color = analysis_label
+  )) +
+  geom_line() +
+  geom_point(size = 2) +
+  facet_grid(threshold_label ~ min_n2_label, scales = "free_y") +
+  coord_flip(ylim = c(0, 20)) +
+  labs(
+    title = "Lambda: Raw BAC and MI BAC Sample Comparisons",
+    x = "Cell specification",
+    y = expression(lambda),
+    linetype = "Analysis sample",
+    color = "Analysis sample"
+  ) +
+  theme_minimal(base_size = 12)
+
+ggsave(
+  file.path(fig_dir, "lambda_raw_vs_mi_four_samples_xmax20.png"),
+  plot_lambda_20,
+  width = 14,
+  height = 9,
+  dpi = 300
+)
+
+
+################################################
+### read files
+################################################
+
+library(tidyverse)
+
+out_dir <- "data/processed/script07_mi_lp_mle"
+
+analysis_sample_labels <- read_csv(file.path(out_dir, "analysis_sample_key.csv"))
+
+mi_lp_mle_rubin_combined <- read_csv(file.path(out_dir, "mi_lp_mle_rubin_combined.csv")) %>% 
+  arrange(threshold_label)
+
+
+# figures: run above block first
+plot_theta
+plot_lambda
+
+plot_theta_20
+plot_lambda_20
