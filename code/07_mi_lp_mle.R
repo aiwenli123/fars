@@ -1274,6 +1274,7 @@ write_csv(crash_type_counts_raw_vs_mi, file.path(out_dir, "crash_type_counts_raw
 # ------------------------------------------------------------------------------
 
 # read file if running from here
+fig_dir <- "figures/script07_mi_lp_mle"
 
 comparison_long <- read.csv(file.path(out_dir, "lp_mle_raw_vs_mi_comparison.csv"))
 cell_specs <- tibble(
