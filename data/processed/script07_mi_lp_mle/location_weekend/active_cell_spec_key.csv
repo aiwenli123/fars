@@ -1,0 +1,8 @@
+location_spec,cell_spec,cell_var,cell_spec_label
+LOCATION_WEEKEND,all_data,CELL_ALL,all data
+LOCATION_WEEKEND,rur_urb,CELL_RUR_URB_07,rural/urban
+LOCATION_WEEKEND,state,CELL_STATE_07,state
+LOCATION_WEEKEND,rur_urb_state,CELL_RUR_URB_STATE_07,rural/urban x state
+LOCATION_WEEKEND,rur_urb_weekend,CELL_RUR_URB_WEEKEND_07,rural/urban x weekend
+LOCATION_WEEKEND,state_weekend,CELL_STATE_WEEKEND_07,state x weekend
+LOCATION_WEEKEND,rur_urb_state_weekend,CELL_RUR_URB_STATE_WEEKEND_07,rural/urban x state x weekend

@@ -1,0 +1,5 @@
+analysis_sample,analysis_label,state_years_used,bac_source,missing_bac_handling
+raw_bac_all_state_years,"A. Raw BAC, all state-years",all,measured only,drop missing
+raw_bac_complete_95_state_years,"B. Raw BAC, 95% complete",restricted,measured only,drop missing
+mi_same_95_state_years,"C. MI BAC, same 95% state-years",restricted,measured + imputed,impute missing
+mi_all_state_years,"D. MI BAC, all state-years",all,measured + imputed,impute missing

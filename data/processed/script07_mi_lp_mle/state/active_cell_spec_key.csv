@@ -1,0 +1,7 @@
+location_spec,cell_spec,cell_var,cell_spec_label
+STATE,all_data,CELL_ALL,all data
+STATE,hour,CELL_HOUR_07,hour
+STATE,hour_period,CELL_HOUR_PERIOD_07,hour x period
+STATE,hour_period_weekend,CELL_HOUR_PERIOD_WEEKEND_07,hour x period x weekend
+STATE,hour_state_period,CELL_HOUR_STATE_PERIOD_07,hour x state x period
+STATE,hour_state_period_weekend,CELL_HOUR_STATE_PERIOD_WEEKEND_07,hour x state x period x weekend

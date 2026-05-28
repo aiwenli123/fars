@@ -34,12 +34,6 @@ library(scales)
 
 mi_driver_path <- "data/processed/driver_miper_long_2015_2024.csv"
 
-out_dir <- "data/processed/script07_mi_lp_mle"
-fig_dir <- "figures/script07_mi_lp_mle"
-
-dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
-dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
-
 # Bounds for theta and lambda, matching script 04.
 lower_risk <- 1
 upper_risk <- 200
@@ -54,7 +48,38 @@ threshold_specs <- tibble(
   mi_definition_var  = c("MI_BAC_GE_05", "MI_BAC_GE_08", "MI_BAC_GE_10")
 )
 
-cell_specs <- tibble(
+# Choose which cell-specification family to use in the main LP/MLE runs.
+#   "STATE"            = original state-based specifications
+#   "RUR_URB"          = rural/urban-based specifications using hour/period/weekend
+#   "LOCATION_WEEKEND" = lower-dimensional state/rural-urban/weekend specifications
+#                        that ignore hour and period
+location_spec <- "LOCATION_WEEKEND"
+
+location_spec <- toupper(location_spec)
+
+if (!location_spec %in% c("STATE", "RUR_URB", "LOCATION_WEEKEND")) {
+  stop("location_spec must be one of: 'STATE', 'RUR_URB', or 'LOCATION_WEEKEND'.")
+}
+
+# Use separate output folders so runs from different cell-specification families do
+# not overwrite or clutter each other.
+location_spec_slug <- case_when(
+  location_spec == "STATE" ~ "state",
+  location_spec == "RUR_URB" ~ "rur_urb",
+  location_spec == "LOCATION_WEEKEND" ~ "location_weekend"
+)
+
+out_dir <- file.path("data/processed/script07_mi_lp_mle", location_spec_slug)
+fig_dir <- file.path("figures/script07_mi_lp_mle", location_spec_slug)
+
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
+
+# whether to drop invalid/missing rural/urban indicators (from raw data)
+rur_urb_keep_clear_only <- TRUE
+
+state_cell_specs <- tibble(
+  location_spec = "STATE",
   cell_spec = c(
     "all_data",
     "hour",
@@ -79,6 +104,82 @@ cell_specs <- tibble(
     "hour x state x period",
     "hour x state x period x weekend"
   )
+)
+
+rur_urb_cell_specs <- tibble(
+  location_spec = "RUR_URB",
+  cell_spec = c(
+    "all_data",
+    "hour",
+    "hour_weekend",
+    "hour_rur_urb",
+    "hour_rur_urb_weekend",
+    "hour_rur_urb_period",
+    "hour_rur_urb_period_weekend"
+  ),
+  cell_var = c(
+    "CELL_ALL",
+    "CELL_HOUR_07",
+    "CELL_HOUR_WEEKEND_07",
+    "CELL_HOUR_RUR_URB_07",
+    "CELL_HOUR_RUR_URB_WEEKEND_07",
+    "CELL_HOUR_RUR_URB_PERIOD_07",
+    "CELL_HOUR_RUR_URB_PERIOD_WEEKEND_07"
+  ),
+  cell_spec_label = c(
+    "all data",
+    "hour",
+    "hour x weekend",
+    "hour x rural/urban",
+    "hour x rural/urban x weekend",
+    "hour x rural/urban x period",
+    "hour x rural/urban x period x weekend"
+  )
+)
+
+location_weekend_cell_specs <- tibble(
+  location_spec = "LOCATION_WEEKEND",
+  cell_spec = c(
+    "all_data", 
+    "rur_urb",
+    "state",
+    "rur_urb_state",
+    "rur_urb_weekend",
+    "state_weekend",
+    "rur_urb_state_weekend"
+  ),
+  cell_var = c(
+    "CELL_ALL",
+    "CELL_RUR_URB_07",
+    "CELL_STATE_07",
+    "CELL_RUR_URB_STATE_07",
+    "CELL_RUR_URB_WEEKEND_07",
+    "CELL_STATE_WEEKEND_07",
+    "CELL_RUR_URB_STATE_WEEKEND_07"
+  ),
+  cell_spec_label = c(
+    "all data",
+    "rural/urban",
+    "state",
+    "rural/urban x state",
+    "rural/urban x weekend",
+    "state x weekend",
+    "rural/urban x state x weekend"
+  )
+)
+
+all_cell_specs_for_sparsity <- bind_rows(
+  state_cell_specs,
+  rur_urb_cell_specs,
+  location_weekend_cell_specs
+)
+
+cell_specs <- switch(
+  location_spec,
+  "STATE" = state_cell_specs,
+  "RUR_URB" = rur_urb_cell_specs,
+  "LOCATION_WEEKEND" = location_weekend_cell_specs,
+  stop("location_spec must be one of: 'STATE', 'RUR_URB', or 'LOCATION_WEEKEND'.")
 )
 
 min_n2_specs <- tibble(
@@ -190,7 +291,7 @@ cat("  Distinct driver rows per imputation should be about:", comma(nrow(driver_
 
 required_cols <- c(
   "YEAR_FILE", "YEAR", "STATE", "ST_CASE", "VEH_NO", "PER_NO",
-  "VE_FORMS", "HOUR", "IMPUTATION",
+  "VE_FORMS", "HOUR", "IMPUTATION", "RUR_URB",
   "BAC_COMPLETE_95", "BAC_GE_05", "BAC_GE_08", "BAC_GE_10",
   "MI_BAC_GE_05", "MI_BAC_GE_08", "MI_BAC_GE_10"
 )
@@ -200,7 +301,7 @@ if (length(missing_required) > 0) {
   stop("Missing required columns in driver_mi_long: ", paste(missing_required, collapse = ", "))
 }
 
-# Create period/weekend/cell variables for this script.
+# Create period/weekend/location/cell variables for this script.
 driver_mi_long <- driver_mi_long %>%
   mutate(
     PERIOD_07 = case_when(
@@ -217,18 +318,53 @@ driver_mi_long <- driver_mi_long %>%
       TRUE ~ FALSE
     ),
     
+    RUR_URB_GROUP_07 = case_when(
+      RUR_URB == 1 ~ "rural",
+      RUR_URB == 2 ~ "urban",
+      RUR_URB %in% c(6, 8, 9) ~ "other_unknown",
+      TRUE ~ NA_character_
+    ),
+    RUR_URB_GROUP_07 = factor(
+      RUR_URB_GROUP_07,
+      levels = c("rural", "urban", "other_unknown")
+    ),
+    
     CELL_ALL = "all_data",
     CELL_HOUR_07 = as.character(HOUR),
     CELL_HOUR_PERIOD_07 = paste(HOUR, PERIOD_07, sep = "_"),
     CELL_HOUR_PERIOD_WEEKEND_07 = paste(HOUR, PERIOD_07, WEEKEND_07, sep = "_"),
     CELL_HOUR_STATE_PERIOD_07 = paste(HOUR, STATE, PERIOD_07, sep = "_"),
-    CELL_HOUR_STATE_PERIOD_WEEKEND_07 = paste(HOUR, STATE, PERIOD_07, WEEKEND_07, sep = "_")
+    CELL_HOUR_STATE_PERIOD_WEEKEND_07 = paste(HOUR, STATE, PERIOD_07, WEEKEND_07, sep = "_"),
+    CELL_HOUR_WEEKEND_07 = paste(HOUR, WEEKEND_07, sep = "_"),
+    CELL_HOUR_RUR_URB_07 = paste(HOUR, RUR_URB_GROUP_07, sep = "_"),
+    CELL_HOUR_RUR_URB_WEEKEND_07 = paste(HOUR, RUR_URB_GROUP_07, WEEKEND_07, sep = "_"),
+    CELL_HOUR_RUR_URB_PERIOD_07 = paste(HOUR, RUR_URB_GROUP_07, PERIOD_07, sep = "_"),
+    CELL_HOUR_RUR_URB_PERIOD_WEEKEND_07 = paste(HOUR, RUR_URB_GROUP_07, PERIOD_07, WEEKEND_07, sep = "_"),
+    
+    # Lower-dimensional location/weekend cells that deliberately ignore hour and period.
+    CELL_RUR_URB_07 = as.character(RUR_URB_GROUP_07),
+    CELL_STATE_07 = as.character(STATE),
+    CELL_RUR_URB_STATE_07 = paste(RUR_URB_GROUP_07, STATE, sep = "_"),
+    CELL_RUR_URB_WEEKEND_07 = paste(RUR_URB_GROUP_07, WEEKEND_07, sep = "_"),
+    CELL_STATE_WEEKEND_07 = paste(STATE, WEEKEND_07, sep = "_"),
+    CELL_RUR_URB_STATE_WEEKEND_07 = paste(RUR_URB_GROUP_07, STATE, WEEKEND_07, sep = "_")
   ) %>%
   filter(!is.na(PERIOD_07), VE_FORMS %in% c(1, 2))
+
+# Keep an unfiltered copy for the state-vs-rural/urban sparsity comparison table.
+driver_mi_long_all_locations <- driver_mi_long
+
+if (location_spec %in% c("RUR_URB", "LOCATION_WEEKEND") && isTRUE(rur_urb_keep_clear_only)) {
+  driver_mi_long <- driver_mi_long %>%
+    filter(RUR_URB_GROUP_07 %in% c("rural", "urban"))
+}
 
 # Raw measured-BAC comparison should not use the ten duplicated imputation rows.
 # The raw BAC variables are identical across imputations, so keep imputation 1 only.
 driver_raw_one_row <- driver_mi_long %>%
+  filter(IMPUTATION == min(IMPUTATION, na.rm = TRUE))
+
+driver_raw_one_row_all_locations <- driver_mi_long_all_locations %>%
   filter(IMPUTATION == min(IMPUTATION, na.rm = TRUE))
 
 cat("Rows for raw measured-BAC comparison after keeping one imputation copy:", comma(nrow(driver_raw_one_row)), "\n")
@@ -254,11 +390,16 @@ make_crash_types <- function(driver_data,
       CRASH_ID_07 = paste(YEAR_FILE, ST_CASE, sep = "_")
     ) %>%
     group_by(
-      YEAR_FILE, YEAR, PERIOD_07, STATE, ST_CASE, VE_FORMS,
-      HOUR, WEEKEND_07,
+      YEAR_FILE, YEAR, PERIOD_07, STATE, RUR_URB, RUR_URB_GROUP_07,
+      ST_CASE, VE_FORMS, HOUR, WEEKEND_07,
       CELL_ALL, CELL_HOUR_07, CELL_HOUR_PERIOD_07,
       CELL_HOUR_PERIOD_WEEKEND_07, CELL_HOUR_STATE_PERIOD_07,
-      CELL_HOUR_STATE_PERIOD_WEEKEND_07
+      CELL_HOUR_STATE_PERIOD_WEEKEND_07, CELL_HOUR_WEEKEND_07,
+      CELL_HOUR_RUR_URB_07, CELL_HOUR_RUR_URB_WEEKEND_07,
+      CELL_HOUR_RUR_URB_PERIOD_07, CELL_HOUR_RUR_URB_PERIOD_WEEKEND_07,
+      CELL_RUR_URB_07, CELL_STATE_07, CELL_RUR_URB_STATE_07,
+      CELL_RUR_URB_WEEKEND_07, CELL_STATE_WEEKEND_07,
+      CELL_RUR_URB_STATE_WEEKEND_07
     ) %>%
     summarize(
       n_drivers = n(),
@@ -364,6 +505,67 @@ summarize_cell_diagnostics <- function(counts) {
     p90_theta_cell_closed = quantile(counts_two_available$theta_cell_closed, 0.90, na.rm = TRUE),
     p95_theta_cell_closed = quantile(counts_two_available$theta_cell_closed, 0.95, na.rm = TRUE)
   )
+}
+
+make_sparsity_summary <- function(counts, min_n2_sparsity = 5) {
+  counts_two_available <- counts %>% filter(n2 > 0)
+  counts_two_kept <- counts_two_available %>% filter(n2 >= min_n2_sparsity)
+  
+  cells_available <- nrow(counts_two_available)
+  cells_kept <- nrow(counts_two_kept)
+  two_car_available <- sum(counts_two_available$n2)
+  two_car_kept <- sum(counts_two_kept$n2)
+  
+  tibble(
+    cells_available = cells_available,
+    cells_with_n2_ge_5 = cells_kept,
+    pct_cells_kept = safe_divide(cells_kept, cells_available),
+    two_car_crashes_available = two_car_available,
+    two_car_crashes_kept = two_car_kept,
+    pct_two_car_crashes_kept = safe_divide(two_car_kept, two_car_available)
+  )
+}
+
+run_one_sparsity_spec <- function(driver_data,
+                                  drinking_var,
+                                  threshold,
+                                  threshold_label,
+                                  analysis_sample,
+                                  imputation_value,
+                                  location_spec_value,
+                                  cell_spec,
+                                  cell_var,
+                                  cell_spec_label) {
+  
+  sparsity_data <- driver_data
+  
+  # For specifications involving rural/urban, this uses the clean rural-or-urban version.
+  if (location_spec_value %in% c("RUR_URB", "LOCATION_WEEKEND") && isTRUE(rur_urb_keep_clear_only)) {
+    sparsity_data <- sparsity_data %>%
+      filter(RUR_URB_GROUP_07 %in% c("rural", "urban"))
+  }
+  
+  crash_types <- make_crash_types(
+    driver_data = sparsity_data,
+    drinking_var = drinking_var,
+    threshold_label = threshold_label,
+    analysis_sample = analysis_sample,
+    imputation_value = imputation_value
+  )
+  
+  counts <- make_cell_counts(crash_types, cell_var = cell_var)
+  
+  make_sparsity_summary(counts, min_n2_sparsity = 5) %>%
+    mutate(
+      analysis_sample = analysis_sample,
+      imputation = imputation_value,
+      threshold = threshold,
+      threshold_label = threshold_label,
+      location_spec = location_spec_value,
+      cell_spec = cell_spec,
+      cell_spec_label = cell_spec_label,
+      .before = 1
+    )
 }
 
 # ------------------------------------------------------------------------------
@@ -756,6 +958,7 @@ run_one_lp_spec <- function(driver_data,
       imputation = imputation_value,
       threshold = threshold,
       threshold_label = threshold_label,
+      location_spec = location_spec,
       cell_spec = cell_spec,
       cell_spec_label = cell_spec_label,
       min_n2 = min_n2,
@@ -769,6 +972,7 @@ run_one_lp_spec <- function(driver_data,
       imputation = imputation_value,
       threshold = threshold,
       threshold_label = threshold_label,
+      location_spec = location_spec,
       cell_spec = cell_spec,
       cell_spec_label = cell_spec_label,
       min_n2 = min_n2,
@@ -800,6 +1004,7 @@ run_one_lp_spec <- function(driver_data,
       threshold = threshold,
       threshold_label = threshold_label,
       drinking_var = drinking_var,
+      location_spec = location_spec,
       cell_spec = cell_spec,
       cell_spec_label = cell_spec_label,
       min_n2 = min_n2,
@@ -814,6 +1019,7 @@ run_one_lp_spec <- function(driver_data,
       threshold = threshold,
       threshold_label = threshold_label,
       drinking_var = drinking_var,
+      location_spec = location_spec,
       cell_spec = cell_spec,
       cell_spec_label = cell_spec_label,
       min_n2 = min_n2,
@@ -884,7 +1090,120 @@ analysis_sample_labels <- tibble(
 )
 
 # -------------------------
-# 5a. Raw measured-BAC runs
+# 5a. Cell sparsity table comparing STATE vs. RUR_URB specifications
+# -------------------------
+
+raw_sample_specs_for_sparsity <- list(
+  list(
+    analysis_sample = "raw_bac_all_state_years",
+    sample_label = "A. Raw BAC, all state-years",
+    data = driver_raw_one_row_all_locations
+  ),
+  list(
+    analysis_sample = "raw_bac_complete_95_state_years",
+    sample_label = "B. Raw BAC, 95% complete",
+    data = driver_raw_one_row_all_locations %>% filter(BAC_COMPLETE_95 == TRUE)
+  )
+)
+
+sparsity_results <- list()
+sparsity_counter <- 1
+
+for (sample_spec in raw_sample_specs_for_sparsity) {
+  raw_data_sample <- sample_spec$data
+  
+  for (t in seq_len(nrow(threshold_specs))) {
+    for (c in seq_len(nrow(all_cell_specs_for_sparsity))) {
+      
+      sparsity_results[[sparsity_counter]] <- run_one_sparsity_spec(
+        driver_data = raw_data_sample,
+        drinking_var = threshold_specs$raw_definition_var[t],
+        threshold = threshold_specs$threshold[t],
+        threshold_label = threshold_specs$threshold_label[t],
+        analysis_sample = sample_spec$analysis_sample,
+        imputation_value = NA_integer_,
+        location_spec_value = all_cell_specs_for_sparsity$location_spec[c],
+        cell_spec = all_cell_specs_for_sparsity$cell_spec[c],
+        cell_var = all_cell_specs_for_sparsity$cell_var[c],
+        cell_spec_label = all_cell_specs_for_sparsity$cell_spec_label[c]
+      )
+      sparsity_counter <- sparsity_counter + 1
+    }
+  }
+}
+
+for (sample_spec in mi_sample_specs) {
+  for (imp in sort(unique(driver_mi_long_all_locations$IMPUTATION))) {
+    mi_data_imp <- driver_mi_long_all_locations %>% filter(IMPUTATION == imp)
+    
+    if (isTRUE(sample_spec$filter_to_bac95)) {
+      mi_data_imp <- mi_data_imp %>% filter(BAC_COMPLETE_95 == TRUE)
+    }
+    
+    for (t in seq_len(nrow(threshold_specs))) {
+      for (c in seq_len(nrow(all_cell_specs_for_sparsity))) {
+        
+        sparsity_results[[sparsity_counter]] <- run_one_sparsity_spec(
+          driver_data = mi_data_imp,
+          drinking_var = threshold_specs$mi_definition_var[t],
+          threshold = threshold_specs$threshold[t],
+          threshold_label = threshold_specs$threshold_label[t],
+          analysis_sample = sample_spec$analysis_sample,
+          imputation_value = imp,
+          location_spec_value = all_cell_specs_for_sparsity$location_spec[c],
+          cell_spec = all_cell_specs_for_sparsity$cell_spec[c],
+          cell_var = all_cell_specs_for_sparsity$cell_var[c],
+          cell_spec_label = all_cell_specs_for_sparsity$cell_spec_label[c]
+        )
+        sparsity_counter <- sparsity_counter + 1
+      }
+    }
+  }
+}
+
+cell_sparsity_by_imp <- bind_rows(sparsity_results) %>%
+  left_join(analysis_sample_labels, by = "analysis_sample")
+
+cell_sparsity_table <- cell_sparsity_by_imp %>%
+  group_by(
+    analysis_sample, analysis_label, state_years_used, bac_source, missing_bac_handling,
+    threshold, threshold_label, location_spec, cell_spec, cell_spec_label
+  ) %>%
+  summarize(
+    cells_available = mean(cells_available, na.rm = TRUE),
+    cells_with_n2_ge_5 = mean(cells_with_n2_ge_5, na.rm = TRUE),
+    pct_cells_kept = mean(pct_cells_kept, na.rm = TRUE),
+    two_car_crashes_available = mean(two_car_crashes_available, na.rm = TRUE),
+    two_car_crashes_kept = mean(two_car_crashes_kept, na.rm = TRUE),
+    pct_two_car_crashes_kept = mean(pct_two_car_crashes_kept, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    pct_cells_kept_label = percent(pct_cells_kept, accuracy = 0.1),
+    pct_two_car_crashes_kept_label = percent(pct_two_car_crashes_kept, accuracy = 0.1)
+  ) %>%
+  arrange(
+    threshold,
+    analysis_sample,
+    location_spec,
+    match(cell_spec, all_cell_specs_for_sparsity$cell_spec)
+  )
+
+cell_sparsity_table_display <- cell_sparsity_table %>%
+  transmute(
+    analysis_label,
+    threshold_label,
+    location_spec,
+    cell_specification = cell_spec_label,
+    cells_available = round(cells_available, 1),
+    cells_with_n2_ge_5 = round(cells_with_n2_ge_5, 1),
+    pct_cells_kept = pct_cells_kept_label,
+    two_car_crashes_kept = round(two_car_crashes_kept, 1),
+    pct_two_car_crashes_kept = pct_two_car_crashes_kept_label
+  )
+
+# -------------------------
+# 5b. Raw measured-BAC runs
 # -------------------------
 
 raw_results <- list()
@@ -1005,7 +1324,7 @@ mi_theta_combined <- mi_imputation_estimates %>%
   group_by(
     analysis_sample, analysis_label, state_years_used, bac_source, missing_bac_handling,
     threshold, threshold_label,
-    cell_spec, cell_spec_label, min_n2, min_n2_label
+    location_spec, cell_spec, cell_spec_label, min_n2, min_n2_label
   ) %>%
   group_modify(~ combine_mi(est = .x$theta, se = .x$theta_se)) %>%
   ungroup() %>%
@@ -1015,7 +1334,7 @@ mi_lambda_combined <- mi_imputation_estimates %>%
   group_by(
     analysis_sample, analysis_label, state_years_used, bac_source, missing_bac_handling,
     threshold, threshold_label,
-    cell_spec, cell_spec_label, min_n2, min_n2_label
+    location_spec, cell_spec, cell_spec_label, min_n2, min_n2_label
   ) %>%
   group_modify(~ combine_mi(est = .x$lambda_plugin, se = .x$lambda_plugin_se)) %>%
   ungroup() %>%
@@ -1026,7 +1345,7 @@ mi_lambda_combined <- mi_imputation_estimates %>%
 mi_nhat_summary_avg <- mi_imputation_estimates %>%
   group_by(
     analysis_sample, threshold, threshold_label,
-    cell_spec, cell_spec_label, min_n2, min_n2_label
+    location_spec, cell_spec, cell_spec_label, min_n2, min_n2_label
   ) %>%
   summarize(
     n_cells = mean(n_cells, na.rm = TRUE),
@@ -1044,7 +1363,7 @@ mi_combined <- bind_rows(mi_theta_combined, mi_lambda_combined) %>%
     mi_nhat_summary_avg,
     by = c(
       "analysis_sample", "threshold", "threshold_label",
-      "cell_spec", "cell_spec_label", "min_n2", "min_n2_label"
+      "location_spec", "cell_spec", "cell_spec_label", "min_n2", "min_n2_label"
     )
   ) %>%
   arrange(parameter, threshold, match(cell_spec, cell_specs$cell_spec), min_n2, analysis_sample)
@@ -1053,7 +1372,7 @@ mi_combined <- bind_rows(mi_theta_combined, mi_lambda_combined) %>%
 mi_crash_counts_avg <- mi_crash_counts_by_imp %>%
   group_by(
     analysis_sample, analysis_label, state_years_used, bac_source, missing_bac_handling,
-    threshold, threshold_label, cell_spec, cell_spec_label, min_n2, min_n2_label
+    threshold, threshold_label, location_spec, cell_spec, cell_spec_label, min_n2, min_n2_label
   ) %>%
   summarize(
     DD = mean(DD, na.rm = TRUE),
@@ -1088,6 +1407,7 @@ raw_theta_for_compare <- raw_estimates %>%
     missing_bac_handling,
     threshold,
     threshold_label,
+    location_spec,
     cell_spec,
     cell_spec_label,
     min_n2,
@@ -1116,6 +1436,7 @@ raw_lambda_for_compare <- raw_estimates %>%
     missing_bac_handling,
     threshold,
     threshold_label,
+    location_spec,
     cell_spec,
     cell_spec_label,
     min_n2,
@@ -1151,6 +1472,7 @@ mi_for_compare <- mi_combined %>%
     missing_bac_handling,
     threshold,
     threshold_label,
+    location_spec,
     cell_spec,
     cell_spec_label,
     min_n2,
@@ -1190,7 +1512,7 @@ comparison_long <- bind_rows(
 # Difference table in wide form. This keeps the main pairwise comparisons explicit.
 comparison_differences <- comparison_long %>%
   select(
-    threshold, threshold_label, cell_spec, cell_spec_label,
+    threshold, threshold_label, location_spec, cell_spec, cell_spec_label,
     min_n2, min_n2_label, parameter, analysis_sample, estimate, se_total
   ) %>%
   mutate(analysis_sample = as.character(analysis_sample)) %>%
@@ -1213,11 +1535,11 @@ comparison_long <- comparison_long %>%
   left_join(
     comparison_differences %>%
       select(
-        threshold, cell_spec, min_n2, parameter,
+        threshold, location_spec, cell_spec, min_n2, parameter,
         raw95_minus_raw_all, mi95_minus_raw95, mi_all_minus_raw95, mi_all_minus_mi95,
         raw95_div_raw_all, mi95_div_raw95, mi_all_div_raw95, mi_all_div_mi95
       ),
-    by = c("threshold", "cell_spec", "min_n2", "parameter")
+    by = c("threshold", "location_spec", "cell_spec", "min_n2", "parameter")
   )
 
 # Wider display tables.
@@ -1250,6 +1572,11 @@ crash_type_counts_raw_vs_mi <- bind_rows(
 # ------------------------------------------------------------------------------
 
 write_csv(analysis_sample_labels, file.path(out_dir, "analysis_sample_key.csv"))
+write_csv(cell_specs, file.path(out_dir, "active_cell_spec_key.csv"))
+write_csv(all_cell_specs_for_sparsity, file.path(out_dir, "all_cell_specs_for_sparsity_key.csv"))
+write_csv(cell_sparsity_by_imp, file.path(out_dir, "cell_sparsity_by_imputation.csv"))
+write_csv(cell_sparsity_table, file.path(out_dir, "cell_sparsity_table.csv"))
+write_csv(cell_sparsity_table_display, file.path(out_dir, "cell_sparsity_table_display.csv"))
 
 write_csv(raw_estimates, file.path(out_dir, "raw_lp_mle_estimates.csv"))
 write_csv(raw_crash_counts, file.path(out_dir, "raw_crash_type_counts.csv"))
@@ -1273,40 +1600,17 @@ write_csv(crash_type_counts_raw_vs_mi, file.path(out_dir, "crash_type_counts_raw
 # 9. Quick plots
 # ------------------------------------------------------------------------------
 
-# read file if running from here
-fig_dir <- "figures/script07_mi_lp_mle"
-
-comparison_long <- read.csv(file.path(out_dir, "lp_mle_raw_vs_mi_comparison.csv"))
-cell_specs <- tibble(
-  cell_spec = c(
-    "all_data",
-    "hour",
-    "hour_period",
-    "hour_period_weekend",
-    "hour_state_period",
-    "hour_state_period_weekend"
-  ),
-  cell_var = c(
-    "CELL_ALL",
-    "CELL_HOUR_07",
-    "CELL_HOUR_PERIOD_07",
-    "CELL_HOUR_PERIOD_WEEKEND_07",
-    "CELL_HOUR_STATE_PERIOD_07",
-    "CELL_HOUR_STATE_PERIOD_WEEKEND_07"
-  ),
-  cell_spec_label = c(
-    "all data",
-    "hour",
-    "hour x period",
-    "hour x period x weekend",
-    "hour x state x period",
-    "hour x state x period x weekend"
-  )
-)
-min_n2_specs <- tibble(
-  min_n2 = c(1, 5),
-  min_n2_label = c("No n2 filter", "n2 >= 5")
-)
+# # read file if running from here
+# fig_dir <- "figures/script07_mi_lp_mle/state"
+# fig_dir <- "figures/script07_mi_lp_mle/rur_urb"
+# fig_dir <- "figures/script07_mi_lp_mle/location_weekend"
+# 
+# comparison_long <- read.csv(file.path(out_dir, "lp_mle_raw_vs_mi_comparison.csv"))
+# cell_specs <- read_csv(file.path(out_dir, "active_cell_spec_key.csv"), show_col_types = FALSE)
+# min_n2_specs <- tibble(
+#   min_n2 = c(1, 5),
+#   min_n2_label = c("No n2 filter", "n2 >= 5")
+# )
 
 
 plot_theta <- comparison_long %>%
@@ -1456,19 +1760,21 @@ ggsave(
 ### read files
 ################################################
 
-library(tidyverse)
-
-out_dir <- "data/processed/script07_mi_lp_mle"
-
-analysis_sample_labels <- read_csv(file.path(out_dir, "analysis_sample_key.csv"))
-
-mi_lp_mle_rubin_combined <- read_csv(file.path(out_dir, "mi_lp_mle_rubin_combined.csv")) %>% 
-  arrange(threshold_label)
-
-
-# figures: run above block first
-plot_theta
-plot_lambda
-
-plot_theta_20
-plot_lambda_20
+# library(tidyverse)
+# 
+# out_dir <- "data/processed/script07_mi_lp_mle/state"
+# out_dir <- "data/processed/script07_mi_lp_mle/rur_urb"
+# out_dir <- "data/processed/script07_mi_lp_mle/location_weekend"
+# 
+# analysis_sample_labels <- read_csv(file.path(out_dir, "analysis_sample_key.csv"))
+# 
+# mi_lp_mle_rubin_combined <- read_csv(file.path(out_dir, "mi_lp_mle_rubin_combined.csv")) %>% 
+#   arrange(threshold_label)
+# 
+# 
+# # figures: run above block first
+# plot_theta
+# plot_lambda
+# 
+# plot_theta_20
+# plot_lambda_20

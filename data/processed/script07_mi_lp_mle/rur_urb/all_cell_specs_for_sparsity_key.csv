@@ -1,0 +1,21 @@
+location_spec,cell_spec,cell_var,cell_spec_label
+STATE,all_data,CELL_ALL,all data
+STATE,hour,CELL_HOUR_07,hour
+STATE,hour_period,CELL_HOUR_PERIOD_07,hour x period
+STATE,hour_period_weekend,CELL_HOUR_PERIOD_WEEKEND_07,hour x period x weekend
+STATE,hour_state_period,CELL_HOUR_STATE_PERIOD_07,hour x state x period
+STATE,hour_state_period_weekend,CELL_HOUR_STATE_PERIOD_WEEKEND_07,hour x state x period x weekend
+RUR_URB,all_data,CELL_ALL,all data
+RUR_URB,hour,CELL_HOUR_07,hour
+RUR_URB,hour_weekend,CELL_HOUR_WEEKEND_07,hour x weekend
+RUR_URB,hour_rur_urb,CELL_HOUR_RUR_URB_07,hour x rural/urban
+RUR_URB,hour_rur_urb_weekend,CELL_HOUR_RUR_URB_WEEKEND_07,hour x rural/urban x weekend
+RUR_URB,hour_rur_urb_period,CELL_HOUR_RUR_URB_PERIOD_07,hour x rural/urban x period
+RUR_URB,hour_rur_urb_period_weekend,CELL_HOUR_RUR_URB_PERIOD_WEEKEND_07,hour x rural/urban x period x weekend
+LOCATION_WEEKEND,all_data,CELL_ALL,all data
+LOCATION_WEEKEND,rur_urb,CELL_RUR_URB_07,rural/urban
+LOCATION_WEEKEND,state,CELL_STATE_07,state
+LOCATION_WEEKEND,rur_urb_state,CELL_RUR_URB_STATE_07,rural/urban x state
+LOCATION_WEEKEND,rur_urb_weekend,CELL_RUR_URB_WEEKEND_07,rural/urban x weekend
+LOCATION_WEEKEND,state_weekend,CELL_STATE_WEEKEND_07,state x weekend
+LOCATION_WEEKEND,rur_urb_state_weekend,CELL_RUR_URB_STATE_WEEKEND_07,rural/urban x state x weekend
