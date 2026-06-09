@@ -391,4 +391,45 @@ Figures are saved in:
 figures/script07_mi_lp_mle/...
 ```
 
+### `08_regression_analysis.R` 
+
+Runs exploratory regressions using the cell-level exposure ratios estimated in `07_mi_lp_mle.R`. The main goal is to understand which cell characteristics are associated with higher implied drunk-driver prevalence, and whether MI changes these exposure estimates systematically. The main outcome is: 
+
+```text
+log(N_hat)
+```
+
+which is the LP-implied drunk-to-sober driver exposure ratio within a cell. The script also analyzes:
+
+```text
+Delta log(N_hat) = log(N_hat_MI) - log(N_hat_raw)
+```
+
+for matched raw vs. MI cells. The script uses raw BAC, 95% complete state-years vs. MI BAC, all state-years.
+
+**Main outputs**
+
+```text
+data/processed/script08_regression_analysis/...
+figures/script08_regression_analysis/...
+```
+
+### `09_mi_diagnostics.R` 
+
+Runs diagnostics/EDA to understand why MI-based LP estimates may differ from raw-BAC estimates. The script compares drivers with observed raw BAC values to drivers with missing raw BAC values filled in using FARS MIPER multiple imputation. It checks whether MI-filled missing-BAC drivers appear systematically less alcohol-involved than drivers with observed BAC. It also looks at four buckets of BAC levels:
+
+```text
+S: BAC = 0
+L: 0 < BAC < 0.05
+M: 0.05 <= BAC < 0.08
+H: BAC >= 0.08
+```
+
+**Main output**
+
+```text
+data/processed/script09_mi_diagnostics/...
+figures/script09_mi_diagnostics/...
+```
+
 
