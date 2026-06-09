@@ -1,0 +1,15 @@
+source,crash_size,crash_type_4,n_crashes
+Observed raw BAC complete crashes,one-car,H,26726
+Observed raw BAC complete crashes,one-car,L,1762
+Observed raw BAC complete crashes,one-car,M,1700
+Observed raw BAC complete crashes,one-car,S,16498
+Observed raw BAC complete crashes,two-car,HH,667
+Observed raw BAC complete crashes,two-car,LH,301
+Observed raw BAC complete crashes,two-car,MH,180
+Observed raw BAC complete crashes,two-car,SH,3175
+Observed raw BAC complete crashes,two-car,LL,25
+Observed raw BAC complete crashes,two-car,LM,27
+Observed raw BAC complete crashes,two-car,SL,394
+Observed raw BAC complete crashes,two-car,MM,13
+Observed raw BAC complete crashes,two-car,SM,262
+Observed raw BAC complete crashes,two-car,SS,2665

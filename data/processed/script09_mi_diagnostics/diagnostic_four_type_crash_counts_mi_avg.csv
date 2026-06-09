@@ -1,0 +1,15 @@
+source,crash_size,crash_type_4,n_crashes_avg,n_crashes_min,n_crashes_max,n_imputations
+MI BAC all crashes,one-car,H,40569,40159,40839,10
+MI BAC all crashes,one-car,L,2459.4,2411,2524,10
+MI BAC all crashes,one-car,M,3164.9,3101,3233,10
+MI BAC all crashes,one-car,S,45743.7,45398,46213,10
+MI BAC all crashes,two-car,HH,2505.6,2432,2545,10
+MI BAC all crashes,two-car,LH,619.4,600,644,10
+MI BAC all crashes,two-car,LL,37.2,31,48,10
+MI BAC all crashes,two-car,LM,64.6,51,75,10
+MI BAC all crashes,two-car,MH,581.7,566,623,10
+MI BAC all crashes,two-car,MM,35.6,27,43,10
+MI BAC all crashes,two-car,SH,14338.7,14248,14372,10
+MI BAC all crashes,two-car,SL,1322.5,1292,1358,10
+MI BAC all crashes,two-car,SM,1348.6,1312,1378,10
+MI BAC all crashes,two-car,SS,15118.1,15055,15203,10
