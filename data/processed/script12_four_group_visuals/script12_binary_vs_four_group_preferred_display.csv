@@ -1,0 +1,13 @@
+stage,threshold,binary_model,four_group_model,binary_estimate,binary_ci,four_group_estimate,four_group_ci,four_div_binary,comparison_note
+One-car risk (lambda),BAC >= 0.05,"2-group: BAC >= 0.05
+(M/H combined vs S/L)","4-group: M group only
+0.05 <= BAC < 0.08",3.815,"(3.597, 4.034)",2.019,"(1.721, 2.368)",0.529,"The binary threshold model estimates one combined risk for BAC >= 0.05, while the four-group model separates the medium group from the high group."
+One-car risk (lambda),BAC >= 0.08,"2-group: BAC >= 0.08
+(H vs S/L/M)","4-group: H group only
+BAC >= 0.08",3.978,"(3.781, 4.174)",4.167,"(3.961, 4.385)",1.048,"The binary threshold model's treated group corresponds most directly to H in the four-group model, but the reference group differs because the four-group model keeps L and M separate from S."
+Two-car risk (theta),BAC >= 0.05,"2-group: BAC >= 0.05
+(M/H combined vs S/L)","4-group: M group only
+0.05 <= BAC < 0.08",3.209,"(2.821, 3.598)",1.644,"(1.107, 2.441)",0.512,"The binary threshold model estimates one combined risk for BAC >= 0.05, while the four-group model separates the medium group from the high group."
+Two-car risk (theta),BAC >= 0.08,"2-group: BAC >= 0.08
+(H vs S/L/M)","4-group: H group only
+BAC >= 0.08",3.391,"(2.992, 3.79)",3.498,"(3.109, 3.936)",1.032,"The binary threshold model's treated group corresponds most directly to H in the four-group model, but the reference group differs because the four-group model keeps L and M separate from S."

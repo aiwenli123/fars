@@ -1,0 +1,17 @@
+cell_spec_label,stage_label,n_fits,convergence_ok_n,hessian_ok_n,mean_n_cells,mean_n_crashes,diagnostic,share
+All data,Two-car risk (theta),10,10,10,1,35914,Optimizer converged,1
+All data,Two-car risk (theta),10,10,10,1,35914,Hessian SE available,1
+All data,One-car risk (lambda),10,10,10,1,91575,Optimizer converged,1
+All data,One-car risk (lambda),10,10,10,1,91575,Hessian SE available,1
+Weekend,Two-car risk (theta),10,10,10,2,35914,Optimizer converged,1
+Weekend,Two-car risk (theta),10,10,10,2,35914,Hessian SE available,1
+Weekend,One-car risk (lambda),10,10,10,2,91575,Optimizer converged,1
+Weekend,One-car risk (lambda),10,10,10,2,91575,Hessian SE available,1
+Rural/urban,Two-car risk (theta),10,10,10,2,35914,Optimizer converged,1
+Rural/urban,Two-car risk (theta),10,10,10,2,35914,Hessian SE available,1
+Rural/urban,One-car risk (lambda),10,10,10,2,91575,Optimizer converged,1
+Rural/urban,One-car risk (lambda),10,10,10,2,91575,Hessian SE available,1
+Rural/urban x weekend,Two-car risk (theta),10,10,10,4,35914,Optimizer converged,1
+Rural/urban x weekend,Two-car risk (theta),10,10,10,4,35914,Hessian SE available,1
+Rural/urban x weekend,One-car risk (lambda),10,10,10,4,91575,Optimizer converged,1
+Rural/urban x weekend,One-car risk (lambda),10,10,10,4,91575,Hessian SE available,1

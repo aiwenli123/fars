@@ -1,0 +1,17 @@
+crash_size,crash_type_4,n_crashes_avg,n_crashes_min,n_crashes_max,n_imputations
+one-car,S,45584.5,45235,46057,10
+one-car,L,2448.9,2397,2516,10
+one-car,M,3145.5,3084,3217,10
+one-car,H,40396.1,39978,40676,10
+one-car,missing_or_ambiguous,0,0,0,10
+two-car,SS,15093.2,15029,15177,10
+two-car,SL,1321.4,1292,1357,10
+two-car,SM,1344.7,1308,1371,10
+two-car,SH,14318,14229,14350,10
+two-car,LL,37.2,31,48,10
+two-car,LM,64.5,51,75,10
+two-car,LH,618,598,643,10
+two-car,MM,35.4,27,43,10
+two-car,MH,580,563,620,10
+two-car,HH,2501.6,2427,2540,10
+two-car,missing_or_ambiguous,0,0,0,10
