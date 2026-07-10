@@ -1,0 +1,19 @@
+comparison_type,cell_spec,cell_id,stage,parameter,estimate_delta0,estimate_rho0,absolute_difference,relative_difference,validation_note
+r,rur_urb_weekend,rural_FALSE,two_car,r_H,0.14949307103677897,0.14949307103677897,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,rural_FALSE,two_car,r_L,0.033551552382840945,0.033551552382840945,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,rural_FALSE,two_car,r_M,0.025504580937954532,0.025504580937954532,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,rural_TRUE,two_car,r_H,0.25921272584107335,0.25921272584107335,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,rural_TRUE,two_car,r_L,0.04578627638932592,0.04578627638932592,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,rural_TRUE,two_car,r_M,0.0412677217292607,0.0412677217292607,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,urban_FALSE,two_car,r_H,0.19155880554834412,0.19155880554834412,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,urban_FALSE,two_car,r_L,0.037190449161803134,0.037190449161803134,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,urban_FALSE,two_car,r_M,0.03155927744543662,0.03155927744543662,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,urban_TRUE,two_car,r_H,0.2962974091006418,0.2962974091006418,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,urban_TRUE,two_car,r_L,0.049380688312337814,0.049380688312337814,0,0,Delta = 0 compared with rho = 0
+r,rur_urb_weekend,urban_TRUE,two_car,r_M,0.04462999018276046,0.04462999018276046,0,0,Delta = 0 compared with rho = 0
+theta_lambda,rur_urb_weekend,NA,one_car,lambda_H,4.167469334603688,4.167469334603688,0,0,Delta = 0 compared with rho = 0
+theta_lambda,rur_urb_weekend,NA,one_car,lambda_L,1.3410132580042018,1.3410132580042018,0,0,Delta = 0 compared with rho = 0
+theta_lambda,rur_urb_weekend,NA,one_car,lambda_M,2.0188770759356656,2.0188770759356656,0,0,Delta = 0 compared with rho = 0
+theta_lambda,rur_urb_weekend,NA,two_car,theta_H,3.497838718820283,3.497838718820283,0,0,Delta = 0 compared with rho = 0
+theta_lambda,rur_urb_weekend,NA,two_car,theta_L,1.2201710486040964,1.2201710486040964,0,0,Delta = 0 compared with rho = 0
+theta_lambda,rur_urb_weekend,NA,two_car,theta_M,1.6442206929963925,1.6442206929963925,0,0,Delta = 0 compared with rho = 0

@@ -1,0 +1,11 @@
+cell_spec,crash_type,same_group,n_cell_imputation_rows,average_count_per_cell,median_count_per_cell,minimum_count_per_cell,maximum_count_per_cell,percent_cell_imputation_rows_zero,average_total_count_per_imputation
+rur_urb_weekend,HH,TRUE,40,625.4,617,271,1008,0,2501.6
+rur_urb_weekend,LL,TRUE,40,9.3,9,4,21,0,37.2
+rur_urb_weekend,MM,TRUE,40,8.85,8,1,20,0,35.4
+rur_urb_weekend,SS,TRUE,40,3773.3,3453.5,1549,6667,0,15093.2
+rur_urb_weekend,LH,FALSE,40,154.5,145.5,71,254,0,618
+rur_urb_weekend,LM,FALSE,40,16.125,13.5,5,33,0,64.5
+rur_urb_weekend,MH,FALSE,40,145,147.5,63,230,0,580
+rur_urb_weekend,SH,FALSE,40,3579.5,3438,1804,5663,0,14318
+rur_urb_weekend,SL,FALSE,40,330.35,312.5,151,566,0,1321.4
+rur_urb_weekend,SM,FALSE,40,336.175,315.5,148,571,0,1344.7
