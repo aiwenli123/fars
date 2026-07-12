@@ -1,0 +1,25 @@
+cell_spec,cell_spec_label,stage,stage_label,parameter,bac_group,estimate,ci_low,ci_high,m,se_log_total,mean_n_crashes
+all_data,All data,two_car,Two-car crashes,theta_L,"Low BAC
+0 < BAC < 0.05",1.0940913147658249,0.7067450105938106,1.6937308181917778,10,0.22296403638016024,35914
+rur_urb_weekend,Rural/urban × weekend,two_car,Two-car crashes,theta_L,"Low BAC
+0 < BAC < 0.05",1.2201710486040964,0.8115786526580965,1.834470858709035,10,0.20804338104834397,35914
+all_data,All data,two_car,Two-car crashes,theta_M,"Middle BAC
+0.05 ≤ BAC < 0.08",1.4381438936576048,0.936034239570522,2.209596370976375,10,0.2191104805403075,35914
+rur_urb_weekend,Rural/urban × weekend,two_car,Two-car crashes,theta_M,"Middle BAC
+0.05 ≤ BAC < 0.08",1.6442206929963925,1.1074034255390672,2.441261806609938,10,0.2016574032589863,35914
+all_data,All data,two_car,Two-car crashes,theta_H,"High BAC
+BAC ≥ 0.08",3.109616886659193,2.7408643229979868,3.527980973249772,10,0.06440112960544386,35914
+rur_urb_weekend,Rural/urban × weekend,two_car,Two-car crashes,theta_H,"High BAC
+BAC ≥ 0.08",3.497838718820283,3.1085875032222527,3.935831206358539,10,0.06019225758027168,35914
+all_data,All data,one_car,One-car crashes,lambda_L,"Low BAC
+0 < BAC < 0.05",1.2696053258072493,1.119893131056538,1.439331699264396,10,0.06401674644727967,91575
+rur_urb_weekend,Rural/urban × weekend,one_car,One-car crashes,lambda_L,"Low BAC
+0 < BAC < 0.05",1.3410132580042018,1.1817680520391984,1.5217170197146226,10,0.06449684930986219,91575
+all_data,All data,one_car,One-car crashes,lambda_M,"Middle BAC
+0.05 ≤ BAC < 0.08",1.8730369050257456,1.590784104267,2.2053698161668267,10,0.08333371681266404,91575
+rur_urb_weekend,Rural/urban × weekend,one_car,One-car crashes,lambda_M,"Middle BAC
+0.05 ≤ BAC < 0.08",2.0188770759356656,1.7212006403055389,2.368035749170426,10,0.08138742849298415,91575
+all_data,All data,one_car,One-car crashes,lambda_H,"High BAC
+BAC ≥ 0.08",3.837734021532844,3.63964212277972,4.046607310056688,10,0.0270391504930278,91575
+rur_urb_weekend,Rural/urban × weekend,one_car,One-car crashes,lambda_H,"High BAC
+BAC ≥ 0.08",4.167469334603688,3.960939801644819,4.38476763712742,10,0.0259324778750006,91575
