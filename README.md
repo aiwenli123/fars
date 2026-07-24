@@ -1,3 +1,4 @@
+edit
 # FARS Levitt-Porter Replication and BAC Extensions
 
 This repository contains R code for preparing and analyzing 2015–2024 Fatality Analysis Reporting System (FARS) data. The project begins with a replication and adaptation of the Levitt and Porter (2001) fatal-crash model and then extends the analysis in two directions:
