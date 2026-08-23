@@ -1,0 +1,15 @@
+crash_size,crash_type,Rural weekday,Rural weekend,Urban weekday,Urban weekend
+One vehicle,S,9427.6,5111.3,20427,10618.6
+One vehicle,L,524.6,401,866.8,656.5
+One vehicle,M,632,534.6,1112.4,866.5
+One vehicle,H,8659.8,8155.1,12892.8,10688.4
+Two vehicles,SS,3662.2,1568.3,6626,3236.7
+Two vehicles,SL,283.7,155.3,543,339.4
+Two vehicles,SM,247.5,161,543.9,392.3
+Two vehicles,SH,2491.8,1826.1,5617.1,4383
+Two vehicles,LL,6.2,4.9,15.7,10.4
+Two vehicles,LM,8.4,8.5,27.3,20.3
+Two vehicles,LH,76.2,89.8,210,242
+Two vehicles,MM,3.1,5.4,12.3,14.6
+Two vehicles,MH,75.4,93.9,204.2,206.5
+Two vehicles,HH,281.5,360.8,883.5,975.8

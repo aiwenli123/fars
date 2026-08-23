@@ -1,0 +1,3 @@
+cell_spec,stage,bootstrap_reps,model_fits_requested,model_fits_with_finite_parameters,optimizer_convergence_zero,parameter_estimates_at_lower_bound,parameter_estimates_at_upper_bound
+rur_urb_weekend,one_car,1000,10000,10000,10000,0,0
+rur_urb_weekend,two_car,1000,10000,10000,10000,0,0
