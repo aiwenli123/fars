@@ -7,3 +7,7 @@ data/raw/
 .RData
 .Ruserdata
 .positai
+
+# Archived files (keep locally, exclude from GitHub)
+/data/processed/archived/
+/figures/archived/
