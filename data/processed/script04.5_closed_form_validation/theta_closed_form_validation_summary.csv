@@ -1,2 +1,0 @@
-n_checks,n_comparable,n_not_comparable,n_pass,n_fail,all_comparable_checks_pass,max_abs_diff_formula_vs_optimizer,max_abs_diff_formula_vs_script04,abs_tolerance,rel_tolerance,lower_risk_bound,upper_risk_bound
-12,12,0,12,0,TRUE,4.7418141102539835e-7,4.7418141102539835e-7,1e-6,1e-6,1,200

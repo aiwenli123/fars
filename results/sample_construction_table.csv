@@ -1,0 +1,8 @@
+sample_component,crashes,driver_records
+Initial dataset,127909,163881
+Initial: one-vehicle crashes,91937,91937
+Initial: two-vehicle crashes,35972,71944
+Excluded: other or unknown rural/urban status,420,478
+Primary dataset,127489,163403
+Primary: one-vehicle crashes,91575,91575
+Primary: two-vehicle crashes,35914,71828

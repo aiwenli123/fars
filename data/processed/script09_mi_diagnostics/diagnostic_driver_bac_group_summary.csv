@@ -1,4 +1,0 @@
-dimension,dimension_level,threshold,threshold_label,n_driver_rows_Missing_raw_BAC_MI_filled,n_driver_rows_Observed_raw_BAC,n_distinct_drivers_Missing_raw_BAC_MI_filled,n_distinct_drivers_Observed_raw_BAC,n_distinct_crashes_Missing_raw_BAC_MI_filled,n_distinct_crashes_Observed_raw_BAC,drunk_share_Missing_raw_BAC_MI_filled,drunk_share_Observed_raw_BAC,drunk_share_gap_imputed_missing_minus_observed,drunk_share_ratio_imputed_missing_to_observed
-all drivers,all drivers,0.05,BAC >= 0.05,85172,78709,85172,78709,73514,71000,0.2851758793969849,0.5343988616295469,-0.24922298223256195,0.5336386356202102
-all drivers,all drivers,0.08,BAC >= 0.08,85172,78709,85172,78709,73514,71000,0.256598412623867,0.4988629000495496,-0.24226448742568257,0.5143665977132803
-all drivers,all drivers,0.1,BAC >= 0.10,85172,78709,85172,78709,73514,71000,0.23128140703517588,0.46696057630004195,-0.23567916926486607,0.49529107760602
