@@ -4,7 +4,7 @@
 ################################################################################
 
 library(tidyverse)
-setwd("~/projects/aiwen/fars")
+# setwd("your_hpc_working_directory")
 
 # Identify the Slurm batch and keep its random stream distinct.
 task_id <- suppressWarnings(as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID")))
@@ -39,7 +39,7 @@ r_true <- read_csv("results/four_group_bootstrap/four_group_original_cell_exposu
   filter(cell_spec == "rur_urb_weekend") %>%
   group_by(cell_id) %>%
   summarize(r_L = mean(r_L), r_M = mean(r_M), r_H = mean(r_H), .groups = "drop")
-fars_counts <- read_csv("data/processed/script10_four_group_prep/four_group_crash_counts_by_cell_imp.csv", show_col_types = FALSE) %>%
+fars_counts <- read_csv("data/processed/script03_four_group_prep/four_group_crash_counts_by_cell_imp.csv", show_col_types = FALSE) %>%
   filter(cell_spec == "rur_urb_weekend") %>%
   group_by(cell_id) %>%
   summarize(target_n2 = mean(n2), target_n1 = mean(n1), .groups = "drop")

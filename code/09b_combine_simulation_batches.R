@@ -5,7 +5,7 @@
 # rm(list=ls())
 library(tidyverse)
 
-setwd("~/projects/aiwen/fars")
+# setwd("your_hpc_working_directory")
 
 input_dir <- "results/simulation_validation_full"
 output_dir <- file.path(input_dir, "combined")
