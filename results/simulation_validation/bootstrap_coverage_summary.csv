@@ -1,7 +1,0 @@
-parameter,true_value,n_simulations,coverage
-lambda_H,4.2,100,0.97
-lambda_L,1.3,100,0.95
-lambda_M,2,100,0.94
-theta_H,3.5,100,0.94
-theta_L,1.2,100,0.98
-theta_M,1.6,100,0.95
